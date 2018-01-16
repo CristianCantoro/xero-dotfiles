@@ -6,8 +6,7 @@ alias blank='gnome-screensaver-command -a'
 alias blank-lock='blank && lock'
 
 # Alias for Zotero
-alias zotero='gnome-terminal --tab -e
-                 "/opt/Zotero/Zotero_linux-x86_64/run-zotero.sh"'
+alias zotero='/opt/Zotero/Zotero_linux-x86_64/zotero'
 
 # Telegram
 alias telegram='/opt/Telegram/Telegram &>/dev/null &'
