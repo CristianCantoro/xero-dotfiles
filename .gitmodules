@@ -7,3 +7,6 @@
 [submodule "tmux/.tmux/plugins/tpm"]
 	path = tmux/.tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "scripts/.scripts"]
+	path = scripts/.scripts
+	url = ssh://git@bitbucket.org/CristianCantoro/dotscripts.git
