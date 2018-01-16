@@ -35,6 +35,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'xero/sourcerer.vim'
 Plug 'xero/blaquemagick.vim'
 Plug 'xero/vim-noctu'
+Plug 'noahfrederick/vim-hemisu'
 
 " features
 Plug 'shougo/deoplete.nvim', has('nvim') ? {} : { 'do': [':UpdateRemotePlugins', ':set runtimepath+=~/.vim/plugged/deoplete.nvim/'] }

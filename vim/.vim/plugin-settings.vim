@@ -19,10 +19,14 @@
 "colorscheme sourcerer
 
 " dark wizard colors http://git.io/blaquemagick.vim
-colorscheme blaquemagick
+"colorscheme blaquemagick
 
 " use your shell colors
 "colorscheme noctu
+
+" https://github.com/noahfrederick/vim-hemisu
+set background=dark
+colorscheme hemisu
 
 " omnifuncs
 augroup omnifuncs
