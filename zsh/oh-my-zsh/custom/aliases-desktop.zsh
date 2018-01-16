@@ -17,5 +17,6 @@ alias tor-browser='/opt/tor/tor-browser_en-US/start-tor-browser'
 
 # Eclipse
 # shellcheck disable=SC2139
-alias eclipse="$HOME/eclipse/java-neon/eclipse/eclipse"
+# /home/<user>/eclipse/<eclipse-version>/eclipse
+alias eclipse="$(find "$HOME/eclipse" -type f -executable -name 'eclipse')"
 
