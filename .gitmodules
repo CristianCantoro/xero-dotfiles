@@ -10,3 +10,6 @@
 [submodule "scripts/.scripts"]
 	path = scripts/.scripts
 	url = ssh://git@bitbucket.org/CristianCantoro/dotscripts.git
+[submodule "ssh/.ssh"]
+	path = ssh/.ssh
+	url = git@bitbucket.org:CristianCantoro/dotssh.git
