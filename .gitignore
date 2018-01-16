@@ -6,4 +6,9 @@ ranger/.config/ranger/colorschemes/__init__.py
 ranger/.config/ranger/colorschemes/__pycache__/
 ranger/.config/ranger/history
 ranger/.config/ranger/tagged
+
+# ignore vim plugins and temp files
 vim/.vim/bundle/
+vim/.vim/undo/
+vim/.vim/plugged/
+vim/.vim/autoload/
