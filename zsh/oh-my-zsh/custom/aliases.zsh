@@ -89,12 +89,6 @@ alias purge-build="$HOME/.scripts/purge-build.sh"
 # shellcheck disable=SC2139
 alias shrinkpdf="$HOME/.scripts/shrinkpdf"
 
-# add apt-whatprovides similar to yum whatprovides
-# shellcheck disable=SC2139
-alias apt-whatprovides="$HOME/.scripts/apt-whatprovides"
-# shellcheck disable=SC2139
-alias apt-version="$HOME/.scripts/apt-version"
-
 # Linuxbrew update and upgrade
 alias brewupdate='brew update && brew upgrade'
 
