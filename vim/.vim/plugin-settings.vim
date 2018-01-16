@@ -27,6 +27,10 @@
 " https://github.com/noahfrederick/vim-hemisu
 set background=dark
 colorscheme hemisu
+" SandyBrown comments
+" highlight Comment   ctermfg=215 guifg=#ffaf5f
+" RosyBrown comments
+highlight Comment ctermfg=138 guifg=#af8787
 
 " omnifuncs
 augroup omnifuncs
