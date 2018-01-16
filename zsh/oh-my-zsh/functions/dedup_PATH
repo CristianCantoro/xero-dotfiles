@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+## Deduplicate entries in PATH
+## Works on bash and zsh
+## See;
+##   * https://unix.stackexchange.com/questions/40749
+##   * https://unix.stackexchange.com/questions/14895
+
+# PATH manipulation
+# safe add to PATH
+function add_to_PATH () {
+  local position="$1"
+  local path_element="$2"
+  local old_path="$PATH"
+  local add_flag=true
+
+  if [[ "$old_path" == *"$path_element:"* ]] || \
+      [[ "$old_path" == *":$path_element"* ]]; then
+    add_flag=false
+  else
+    add_flag=true
+  fi
+
+  if $add_flag; then
+    if [ "$position" == "append" ]; then
+      PATH="${old_path}:${path_element}"
+    elif [ "$position" == "front" ]; then
+      PATH="${path_element}:${old_path}"
+    else
+      true;
+    fi
+  fi
+
+}
+
+local \
+  DEFAULT_PATH='/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin'
+
+local add_flag=true
+local old_path="$PATH"
+# export PATH="$DEFAULT_PATH"
+export PATH=''
+
+/usr/bin/awk \
+'{
+  n = split($0, path_elements, ":")
+  for (i = 0; ++i <= n;)
+    print path_elements[i]
+}' <<< "$old_path" | while read -r path_element; do
+
+  # add_to_PATH "append" "$path_element"
+  old_path="$PATH"
+  add_flag=true
+  if [[ "$old_path" == *"$path_element:"* ]] || \
+       [[ "$old_path" == *":$path_element"* ]]; then
+     add_flag=false
+   else
+     add_flag=true
+   fi
+
+  if $add_flag; then
+     PATH="${old_path}:${path_element}"
+   fi
+
+
+done
+
+PATH="$(echo "$PATH" | /usr/bin/cut -c 2-)"
+export PATH="$PATH:$DEFAULT_PATH"
