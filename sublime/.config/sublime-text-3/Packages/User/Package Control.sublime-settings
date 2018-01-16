@@ -1,0 +1,13 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Dark Pastel Color Scheme",
+		"Package Control",
+		"SublimeLinter",
+		"ZSH"
+	]
+}
