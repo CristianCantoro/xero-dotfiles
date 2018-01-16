@@ -53,7 +53,7 @@ export XDG_DATA_DIRS="$HOME/.linuxbrew/share:$XDG_DATA_DIRS"
 
 # de-duplicate PATH
 # shellcheck disable=SC2153
-if [[ "$FPATH" ==  *".oh-my-zsh/functions"* ]]; then
+if [[ "$FPATH" ==  *".oh-my-zsh/custom/functions"* ]]; then
     autoload dedup_PATH
     dedup_PATH
 fi
