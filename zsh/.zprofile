@@ -1,6 +1,13 @@
 # Load the default .profile, should be shell safe
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
 
+case $TERM in
+  rxvt|*term|gnome-*)
+  precmd() { print -Pn "\e]0;%m:::$(basename $PWD)\a" }
+  preexec () { print -Pn "\e]0;$1\a" }
+  ;;
+esac
+
 # Mass move
 autoload -U zmv
 
@@ -64,7 +71,6 @@ fi
 # export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 
 # Load RVM into a shell session *as a function*
-
 # Add RVM to PATH for scripting
 # See https://rvm.io
 # export PATH="$HOME/.rvm/bin:$PATH"
