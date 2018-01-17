@@ -32,8 +32,8 @@ alias getip='canihazip'
 #                                     cut -d: -f2 | awk "{print \$1}";
 #                                 }; _showip'
 # shellcheck disable=SC2142
-alias showip='function _showip(){ ip_regex="s#^(\w+)\s*.+inet addr:([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}) .+#\1\t\2#g";
-								  /sbin/ifconfig $1 | grep -B1 "inet addr:" |
+alias showip='function _showip(){ ip_regex="s#[0-9]+: (\w+):.+ inet ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}).+#\1\t\t\2#g";
+                                  ip addr show $1 | grep -B2 "inet " |
                                   tr "\n" "--" | sed "s/----/\n/g" |
                                   sed -r "$ip_regex";
                                   echo "";
