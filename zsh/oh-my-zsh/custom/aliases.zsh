@@ -91,9 +91,9 @@ alias ssh-remove="ssh-keygen -f '$HOME/.ssh/known_hosts' -R"
 # count number of columns in CSV file
 # shellcheck disable=SC2142
 alias columncount='function _columncount(){
-				  local mincol=$(awk -F"${2:-,}" "{print NF}" $1 | sort -nu | head -n 1;)
-				  local maxcol=$(awk -F"${2:-,}" "{print NF}" $1 | sort -nu | tail -n 1;)
-				  echo "$mincol $maxcol"
+                  local mincol=$(awk -F"${2:-,}" "{print NF}" $1 | sort -nu | head -n 1;)
+                  local maxcol=$(awk -F"${2:-,}" "{print NF}" $1 | sort -nu | tail -n 1;)
+                  echo "$mincol $maxcol"
                 }; _columncount'
 
 # Run gpg2 instead of gpg
