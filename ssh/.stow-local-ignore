@@ -1,0 +1,4 @@
+# ignore everything except config and config.d
+setup.sh
+README.md
+clusterssh
