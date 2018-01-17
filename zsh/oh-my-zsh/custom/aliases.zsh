@@ -57,9 +57,32 @@ alias whichport='sudo netstat -tulpn'
 alias stripcolors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
 
 # maintain colors through pipes
-alias 'forcecolors_grep'='grep --color=always'
-alias 'forcecolors_ls'='ls --color=always'
-alias 'forcecolors'='unbuffer'
+# alias 'forcecolors_grep'='grep --color=always'
+# alias 'forcecolors_ls'='ls --color=always'
+# alias 'forcecolors'='unbuffer'
+function forcecolors() {
+  if [[ $# -lt 1 ]] ; then
+    (>&2 echo 'Usage: forcecolors <command>'
+         echo 'at least one argument required')
+  else
+    case $* in
+      ls* )
+      shift 1
+      ls --color=always "$@"
+      ;;
+    grep* )
+      shift 1
+      grep --color=always "$@"
+      ;;
+    * )
+      unbuffer "$@"
+      ;;
+    esac
+  fi
+}
+
+# suppress color in grep
+alias 'grepnoc'='grep --color=never'
 
 # ssh remove key from authorized_keys
 # shellcheck disable=SC2139
