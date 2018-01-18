@@ -85,3 +85,7 @@ export XDG_DATA_DIRS="$HOME/.linuxbrew/share:$XDG_DATA_DIRS"
 # Add RVM to PATH for scripting
 # See https://rvm.io
 # export PATH="$HOME/.rvm/bin:$PATH"
+
+# add subuser to PATH
+PATH=$HOME/.subuser/bin:$PATH
+
