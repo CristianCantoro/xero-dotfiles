@@ -85,13 +85,6 @@ alias columncount='function _columncount(){
 # Run gpg2 instead of gpg
 alias gpg=gpg2
 
-
-# nuovo comando 'purge'
-# shellcheck disable=SC2139
-alias purge="$HOME/.scripts/purge.sh"
-# shellcheck disable=SC2139
-alias purge-build="$HOME/.scripts/purge-build.sh"
-
 # shrinkpdf
 # See:
 # https://github.com/CristianCantoro/shrinkpdf
