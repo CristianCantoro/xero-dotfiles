@@ -59,10 +59,16 @@ export XDG_DATA_DIRS="$HOME/.linuxbrew/share:$XDG_DATA_DIRS"
 # export PATH="$HOME/.cargo/bin:$PATH"
 
 # de-duplicate PATH
-# shellcheck disable=SC2153
-if [[ "$FPATH" ==  *".oh-my-zsh/custom/functions"* ]]; then
-    autoload dedup_PATH
-    dedup_PATH
+if [ -f "$ZSH_CUSTOM/functions/dedup_PATH" ]; then
+  autoload dedup_PATH
+  dedup_PATH
+fi
+
+# de-duplicate PATH
+if [ -f "$ZSH_CUSTOM/functions/showip" ]; then
+  autoload showip
+  # force reload to activate autocompletion
+  source $ZSH/oh-my-zsh.sh
 fi
 
 # Run SSH with GPG support

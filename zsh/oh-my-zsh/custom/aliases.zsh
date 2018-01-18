@@ -27,18 +27,6 @@ alias dirsize='du -h -s'
 alias canihazip='curl -w "\n" https://canihazip.com/s'
 alias getip='canihazip'
 
-# Show IP address
-# alias showip='function _showip(){ /sbin/ifconfig $1 | grep "inet addr:" |
-#                                     cut -d: -f2 | awk "{print \$1}";
-#                                 }; _showip'
-# shellcheck disable=SC2142
-alias showip='function _showip(){ ip_regex="s#[0-9]+: (\w+):.+ inet ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}).+#\1\t\t\2#g";
-                                  ip addr show $1 | grep -B2 "inet " |
-                                  tr "\n" "--" | sed "s/----/\n/g" |
-                                  sed -r "$ip_regex";
-                                  echo "";
-                                }; _showip'
-
 # Alias to generate random password
 alias genpass="</dev/urandom tr -dc '12345!@#$%qwertQWERTasdfgASDFGzxcvbZXCVB' \
                | head -c32; echo ''"
