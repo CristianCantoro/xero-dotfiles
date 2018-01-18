@@ -67,12 +67,10 @@ function forcecolors() {
   else
     case $* in
       ls* )
-      shift 1
-      ls --color=always "$@"
+      shift 1; ls --color=always "$@"
       ;;
     grep* )
-      shift 1
-      grep --color=always "$@"
+      shift 1; grep --color=always "$@"
       ;;
     * )
       unbuffer "$@"
