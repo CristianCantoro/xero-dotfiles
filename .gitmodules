@@ -16,3 +16,6 @@
 [submodule "zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions"]
 	path = zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "nvm/.nvm"]
+	path = nvm/.nvm
+	url = https://github.com/creationix/nvm.git

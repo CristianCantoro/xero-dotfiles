@@ -60,7 +60,7 @@ export XDG_DATA_DIRS="$HOME/.linuxbrew/share:$XDG_DATA_DIRS"
 # Add NVM
 # See https://github.com/creationix/nvm
 # export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Go
 # export GOPATH="$HOME/go"
