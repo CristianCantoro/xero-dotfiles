@@ -8,8 +8,32 @@ case $TERM in
   ;;
 esac
 
+# reload theme
+( [ -f "$ZSH/themes/$ZSH_THEME.zsh-theme" ] && \
+    source "$ZSH/themes/$ZSH_THEME.zsh-theme" ) && \
+  ( [ -f "$ZSH/custom/themes/$ZSH_THEME.zsh-theme" ] && \
+    source "$ZSH/custom/themes/$ZSH_THEME.zsh-theme")
+
 # Mass move
 autoload -U zmv
+
+# de-duplicate PATH
+if [ -f "$ZSH_CUSTOM/functions/dedup_PATH" ]; then
+  autoload dedup_PATH
+  dedup_PATH
+fi
+
+# add showip function
+if [ -f "$ZSH_CUSTOM/functions/showip" ]; then
+  autoload showip
+  # force reload to activate autocompletion
+  source $ZSH/oh-my-zsh.sh
+fi
+
+# add columncount function
+if [ -f "$ZSH_CUSTOM/functions/columncount" ]; then
+  autoload columncount
+fi
 
 # tmux over ssh
 # See:
@@ -49,32 +73,8 @@ export XDG_DATA_DIRS="$HOME/.linuxbrew/share:$XDG_DATA_DIRS"
 # azure-cli completion
 # source <(azure --completion)
 
-# reload theme
-( [ -f "$ZSH/themes/$ZSH_THEME.zsh-theme" ] && \
-    source "$ZSH/themes/$ZSH_THEME.zsh-theme" ) && \
-  ( [ -f "$ZSH/custom/themes/$ZSH_THEME.zsh-theme" ] && \
-    source "$ZSH/custom/themes/$ZSH_THEME.zsh-theme")
-
 # Add Haskell package manager (cargo) to path
 # export PATH="$HOME/.cargo/bin:$PATH"
-
-# de-duplicate PATH
-if [ -f "$ZSH_CUSTOM/functions/dedup_PATH" ]; then
-  autoload dedup_PATH
-  dedup_PATH
-fi
-
-# add showip function
-if [ -f "$ZSH_CUSTOM/functions/showip" ]; then
-  autoload showip
-  # force reload to activate autocompletion
-  source $ZSH/oh-my-zsh.sh
-fi
-
-# add columncount function
-if [ -f "$ZSH_CUSTOM/functions/columncount" ]; then
-  autoload columncount
-fi
 
 # Run SSH with GPG support
 # see:
