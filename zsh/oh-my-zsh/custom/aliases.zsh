@@ -85,12 +85,6 @@ alias columncount='function _columncount(){
 # Run gpg2 instead of gpg
 alias gpg=gpg2
 
-# shrinkpdf
-# See:
-# https://github.com/CristianCantoro/shrinkpdf
-# shellcheck disable=SC2139
-alias shrinkpdf="$HOME/.scripts/shrinkpdf"
-
 # Linuxbrew update and upgrade
 alias brewupdate='brew update && brew upgrade'
 
