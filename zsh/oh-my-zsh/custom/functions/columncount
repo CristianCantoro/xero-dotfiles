@@ -1,0 +1,36 @@
+# count number of columns in CSV file
+function usage() {
+  (>&2 print \
+"Usage:
+  columncount [options] <file> [<delimiter>]
+
+Return the minimum and maximum number of columns in a CSV file.
+
+Arguments:
+  <file>				File to process.
+  <delimiter>			CSV delimiter [default: ,]
+
+Options:
+  -h, --help             Show this help and exits.
+")
+}
+
+while getopts ":h" opt; do
+  case $opt in
+    h)
+      usage
+      return 0
+      ;;
+  esac
+done
+
+# at least one argument is needed
+if [[ $# -lt 1 ]] ; then
+  usage
+  return 1
+fi
+
+local mincol=$(awk -F"${2:-,}" "{print NF}" $1 | sort -nu | head -n 1;)
+local maxcol=$(awk -F"${2:-,}" "{print NF}" $1 | sort -nu | tail -n 1;)
+
+echo "$mincol $maxcol"

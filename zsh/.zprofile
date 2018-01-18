@@ -64,11 +64,16 @@ if [ -f "$ZSH_CUSTOM/functions/dedup_PATH" ]; then
   dedup_PATH
 fi
 
-# de-duplicate PATH
+# add showip function
 if [ -f "$ZSH_CUSTOM/functions/showip" ]; then
   autoload showip
   # force reload to activate autocompletion
   source $ZSH/oh-my-zsh.sh
+fi
+
+# add columncount function
+if [ -f "$ZSH_CUSTOM/functions/columncount" ]; then
+  autoload columncount
 fi
 
 # Run SSH with GPG support

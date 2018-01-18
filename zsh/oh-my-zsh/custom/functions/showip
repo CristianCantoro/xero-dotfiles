@@ -12,7 +12,7 @@ If a interface with no address is specified then the string 'no address' is
 printed.
 
 Options:
-  -h, --help             this help
+  -h, --help             Show this help and exits.
 
 Example:
   showip eth0")
