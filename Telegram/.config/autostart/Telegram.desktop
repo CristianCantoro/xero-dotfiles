@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/opt/Telegram/Telegram
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Telegram
+Name=Telegram
+Comment[en_US]=Telegram messenger
+Comment=Telegram messenger

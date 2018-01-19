@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/ss-qt5
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Shadowsocks-Qt5
+Name=Shadowsocks-Qt5
+Comment[en_US]=Shadowsocks-Qt5 GUI
+Comment=Shadowsocks-Qt5 GUI

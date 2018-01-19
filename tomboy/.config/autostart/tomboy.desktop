@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/tomboy
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Tomboy
+Name=Tomboy
+Comment[en_US]=Tomboy notes
+Comment=Tomboy notes
