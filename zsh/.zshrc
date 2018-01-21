@@ -49,7 +49,7 @@ DISABLE_LS_COLORS="false"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="yyyy/mm/dd hh:MM:ss: "
+# HIST_STAMPS="yyyy/mm/dd hh:MM:ss: "
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -101,10 +101,5 @@ if [ -f $HOME/.zprofile ]; then
     source $HOME/.zprofile
 fi
 
-# Increase history size
-export HISTSIZE=5000000
-export SAVEHIST=5000000
-
 # enable dircolors
 eval $(dircolors)
-
