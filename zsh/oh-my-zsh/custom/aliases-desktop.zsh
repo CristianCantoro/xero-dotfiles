@@ -1,5 +1,5 @@
 # Aliases for a desktop system
-if [ "$XDG_SESSION_TYPE" == "x11" ]; then
+if [ "$XDG_SESSION_TYPE" = "x11" ]; then
 
   # Alias to lock and blank screen
   alias lock='gnome-screensaver-command -l'
