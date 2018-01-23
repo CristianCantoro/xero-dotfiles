@@ -3,9 +3,15 @@
 
 case $TERM in
   rxvt|*term|gnome-*)
-  precmd() { print -Pn "\e]0;%m:::$(basename $PWD)\a" }
-  preexec () { print -Pn "\e]0;$1\a" }
-  ;;
+
+    # fix issue with %[A-z], zsh interpret these symbols as
+	# command sequences with a special meaning:
+	# See:
+    # https://github.com/robbyrussell/oh-my-zsh/issues/521
+    # https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/435336
+    precmd() { print -Pn $'\e]0;%m:::$(basename $PWD)\a' }
+    preexec () { print -Pn $'\e]0;${~1:gs/%/%%}\a' }
+    ;;
 esac
 
 # reload theme
