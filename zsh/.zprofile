@@ -43,9 +43,13 @@ fi
 
 # tmux over ssh
 # See:
-#   https://balist.es/blog/2015/02/09/
-#     firing-tmux-when-logging-in-via-ssh/
-source "$HOME/.scripts/tmux.sh"
+#   https://balist.es/blog/2015/02/09/firing-tmux-when-logging-in-via-ssh/
+# this is disabled for root, if you are logging in via ssh as root, you have a
+# problem
+if [[ $UID -ne 0 ]]; then
+  source "$HOME/.scripts/tmux.sh"
+fi
+
 
 # startup virtualenv-burrito
 # See:
