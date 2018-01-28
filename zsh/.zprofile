@@ -94,7 +94,7 @@ export NVM_DIR="$(realpath $HOME/.nvm)"
 # Load RVM into a shell session *as a function*
 # Add RVM to PATH for scripting
 # See https://rvm.io
-# export PATH="$HOME/.rvm/bin:$PATH"
+export PATH="$HOME/.rvm/bin:$PATH"
 
 # add subuser to PATH
 PATH=$HOME/.subuser/bin:$PATH

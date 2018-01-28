@@ -24,3 +24,5 @@ fi
 export SHELL_TAB_SIZE=2
 tabs "$SHELL_TAB_SIZE"
 
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
