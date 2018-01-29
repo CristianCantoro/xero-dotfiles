@@ -92,10 +92,6 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# fix rvm-prompt issue
-# rvm-prompt i v g &>/dev/null
-# rvm-prompt
-
 # Load .zprofile
 if [ -f $HOME/.zprofile ]; then
     source $HOME/.zprofile

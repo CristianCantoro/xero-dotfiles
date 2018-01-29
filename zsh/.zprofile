@@ -95,6 +95,8 @@ export NVM_DIR="$(realpath $HOME/.nvm)"
 # Add RVM to PATH for scripting
 # See https://rvm.io
 export PATH="$HOME/.rvm/bin:$PATH"
+# fix rvm-prompt issue
+# rvm-prompt i v g &>/dev/null
 
 # add subuser to PATH
 PATH=$HOME/.subuser/bin:$PATH
