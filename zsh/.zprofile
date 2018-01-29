@@ -47,6 +47,10 @@ fi
 # this is disabled for root, if you are logging in via ssh as root, you have a
 # problem
 if [[ $UID -ne 0 ]]; then
+  # if TMUX is defined then set TERM to linux-256color
+  if [[ ! -z "$TMUX" ]]; then
+    export TERM='linux-256color'
+  fi
   source "$HOME/.scripts/tmux.sh"
 fi
 
