@@ -47,7 +47,6 @@ fi
 # this is disabled for root, if you are logging in via ssh as root, you have a
 # problem
 if [[ $UID -ne 0 ]]; then
-  export TERM='screen-256color'
   source "$HOME/.scripts/tmux.sh"
 fi
 
