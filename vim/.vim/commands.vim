@@ -45,4 +45,4 @@ command Ascii :call AsciiMode()
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 " https://stackoverflow.com/questions/2600783
-cmap w!! w !sudo tee > /dev/null %
+cmap w!! w !sudo sponge %
