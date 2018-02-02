@@ -103,5 +103,9 @@ export PATH="$HOME/.rvm/bin:$PATH"
 # rvm-prompt i v g &>/dev/null
 
 # add subuser to PATH
-PATH=$HOME/.subuser/bin:$PATH
+[ -d "$HOME/.subuser" ] && \
+  PATH=$HOME/.subuser/bin:$PATH
 
+# add restic env vars
+[ -f "$HOME/.restic/environment" ] && \
+  source "$HOME/.restic/environment"
