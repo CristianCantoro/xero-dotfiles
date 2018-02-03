@@ -13,7 +13,10 @@ fi
 local current_dir='%{$terminfo[bold]$fg[blue]%}%~%{$reset_color%}'
 local rvm_ruby=''
 if which rvm-prompt &> /dev/null; then
-  rvm_ruby='%{$fg[red]%}‹$(rvm-prompt i v g)›%{$reset_color%}'
+  rvm_ruby='%{$fg[red]%}'
+  rvm_ruby+='$([ ! -z "$(rvm-prompt i v g)" ] && echo "‹$(rvm-prompt i v g)›" || \
+                  ([ "$(dirname $(which ruby))" == "/usr/bin" ] && echo "‹system›"))'
+  rvm_ruby+='%{$reset_color%}'
 else
   if which rbenv &> /dev/null; then
     rvm_ruby='%{$fg[red]%}‹$(rbenv version | sed -e "s/ (set.*$//")›%{$reset_color%}'
