@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# You can define a color for the following 3 parts of the
+# prompt:
+#   - the <user> name
+#   - the <at> symbol (@)
+#   - the <host> name
+# for a non-root user and for root
+#
+# So the following variables can be defined:
+#   - user_color_user
+#   - at_color_user
+#   - host_color_user
+#
+#   - user_color_root
+#   - at_color_root
+#   - host_color_root
+#
+# every variable definition should be 'local'
+#
+# The colors are defined in this order <user>, <at>, <host> so if a color
+# is not defined the precedent is used.
+# No color equals to white.
+
+case "$(hostname)" in
+  'inara')
+      local user_color_root="$fg[red]"
+      local at_color_root="$FG[031]"
+
+      local user_color_user="$FG[031]"
+      ;;
+  'mal')
+      local user_color_root="$fg[red]"
+      local at_color_root="$fg[magenta]"
+
+      local at_color_user="$fg[magenta]"
+      ;;
+  'zoe')
+      local user_color_root="$fg[red]"
+      local at_color_root="$FG[023]"
+
+      local user_color_user="$FG[023]"
+      ;;
+  *)
+      ;;
+esac
