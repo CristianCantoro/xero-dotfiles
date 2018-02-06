@@ -12,6 +12,7 @@
 if [ -n "$BASH_VERSION" ]; then
   # include .bashrc if it exists
   if [ -f "$HOME/.bashrc" ]; then
+  # shellcheck disable=SC1090
   . "$HOME/.bashrc"
   fi
 fi
@@ -24,5 +25,9 @@ fi
 export SHELL_TAB_SIZE=2
 tabs "$SHELL_TAB_SIZE"
 
+# set my GPG key
+export GPGKEY='0xF4B4A1414B2F9555'
+
 # Load RVM into a shell session *as a function*
+  # shellcheck disable=SC1090
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
