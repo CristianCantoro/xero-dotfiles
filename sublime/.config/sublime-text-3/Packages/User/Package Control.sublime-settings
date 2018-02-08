@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"Awk",
 		"Dark Pastel Color Scheme",
 		"Dockerfile Syntax Highlighting",
 		"Package Control",
