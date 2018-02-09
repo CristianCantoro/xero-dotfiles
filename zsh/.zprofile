@@ -23,22 +23,23 @@ esac
 # Mass move
 autoload -U zmv
 
+# autoload function in $ZSH_CUSTOM/functions and autocompletions
+if [ -d "$ZSH_CUSTOM/functions" ]; then
+  for funcfile in "$ZSH_CUSTOM"/functions/^_*(.); do
+    funcname=$(basename "$funcfile")
+    autoload "$funcname"
+  done
+
+  # if there are autocompletion files, force reload to activate them
+  set -- _*
+  if [ "$#" -gt 0 ]; then
+    source $ZSH/oh-my-zsh.sh
+  fi
+fi
+
 # de-duplicate PATH
 if [ -f "$ZSH_CUSTOM/functions/dedup_PATH" ]; then
-  autoload dedup_PATH
   dedup_PATH
-fi
-
-# add showip function
-if [ -f "$ZSH_CUSTOM/functions/showip" ]; then
-  autoload showip
-  # force reload to activate autocompletion
-  source $ZSH/oh-my-zsh.sh
-fi
-
-# add columncount function
-if [ -f "$ZSH_CUSTOM/functions/columncount" ]; then
-  autoload columncount
 fi
 
 # tmux over ssh
@@ -53,7 +54,6 @@ if [[ $UID -ne 0 ]]; then
     export TERM='tmux-256color'
   fi
 fi
-
 
 # startup virtualenv-burrito
 # See:

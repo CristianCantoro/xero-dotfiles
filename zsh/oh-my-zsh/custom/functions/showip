@@ -1,6 +1,7 @@
+#!/usr/bin/env zsh
 # Show IP address
 
-function usage() {
+local function __showip_usage() {
   (>&2 print \
 "Usage:
   showip [options] [<iface>]
@@ -18,40 +19,53 @@ Example:
   showip eth0")
 }
 
-while getopts ":h" opt; do
-  case $opt in
-    h)
-      usage
-      return 0
-      ;;
-  esac
-done
+local function __showip() {
 
-# ip_regex:
-#  - a number followed by a colon and the name of the interface followed by a
-#    colon
-#  - inet followed by an IP address
-# --> the result is the interface name, followed by a tab and then the IP.
-ip_regex="s#[0-9]+: (\w+)\s+ inet "
-ip_regex+="([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}).+"
-ip_regex+="#\1\t\2#g"
+  local opt
 
-# set tab width to 16
-tabs 16
-
-# does the work, select the IP and apply the regex above
-if [[ $# -lt 1 ]] ; then
-  ip -4 -o addr show | grep -B2 "inet " | sed -r "$ip_regex"
-else
-  for iface in "$@"; do
-    res=$(ip -4 -o addr show "$iface" | grep -B2 "inet " | sed -r "$ip_regex")
-    if [[ -z "$res" ]]; then
-      echo -e "${iface}\tno address"
-    else
-      echo "$res"
-    fi
+  while getopts ":h" opt; do
+    case $opt in
+      h)
+        __showip_usage
+        return 0
+        ;;
+      *)
+        (>&2 echo "Flag $opt not recognized." )
+        ;;
+    esac
   done
-fi
 
-# set tab width back to default value (SHELL_TAB_SIZE
-tabs "$SHELL_TAB_SIZE"
+  # ip_regex:
+  #  - a number followed by a colon and the name of the interface followed by a
+  #    colon
+  #  - inet followed by an IP address
+  # --> the result is the interface name, followed by a tab and then the IP.
+  local ip_regex
+  ip_regex='s#[0-9]+: (\w+)\s+ inet '
+  ip_regex+='([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}).+'
+  ip_regex+='#\1\t\2#g'
+
+  # set tab width to 16
+  tabs 16
+
+  # does the work, select the IP and apply the regex above
+  if [ $# -lt 1 ] ; then
+    ip -4 -o addr show | grep -B2 "inet " | sed -r "$ip_regex"
+  else
+    local iface
+    for iface in "$@"; do
+      local res
+      res=$(ip -4 -o addr show "$iface" | grep -B2 "inet " | sed -r "$ip_regex")
+      if [[ -z "$res" ]]; then
+        echo -e "${iface}"'\tno address'
+      else
+        echo "$res"
+      fi
+    done
+  fi
+
+  # set tab width back to default value (SHELL_TAB_SIZE
+  tabs "$SHELL_TAB_SIZE"
+}
+
+__showip "$@"

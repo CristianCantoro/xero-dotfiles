@@ -1,0 +1,50 @@
+#!/usr/bin/env zsh
+
+# get SSH server fingerprint
+# https://unix.stackexchange.com/questions/126908
+
+function __ssh-fingerprint_usage() {
+  (>&2 print \
+"Usage:
+  ssh-fingerprint [options] <host>
+
+List SSH fingerprints for host <host>
+
+Options:
+  -h, --help             Show this help and exits.
+
+Example:
+  ssh-fingerprint localhost")
+}
+
+local function __ssh-fingerprint() {
+  local opt
+  local ssh_public_keys
+
+  while getopts ":h" opt; do
+    case $opt in
+      h)
+        __ssh-fingerprint_usage
+        return 0
+        ;;
+      *)
+        (>&2 echo "Flag $opt not recognized." )
+        ;;
+    esac
+  done
+
+  # get ssh public keys
+  ssh_public_keys="$(ssh-keyscan "$1" 2>/dev/null)"
+  if [ ! -z "$ssh_public_keys" ]; then
+    ssh-keygen -l -f <(echo "$ssh_public_keys")
+  else
+    (>&2 echo "No public keys found for host $opt not recognized." )
+  fi
+
+}
+
+if [ "$#" -lt 1 ] ; then
+  __ssh-fingerprint_usage 
+else
+  __ssh-fingerprint "$@"
+fi

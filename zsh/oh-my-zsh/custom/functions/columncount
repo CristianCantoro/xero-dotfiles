@@ -1,5 +1,7 @@
+#!/usr/bin/env zsh
+
 # count number of columns in CSV file
-function usage() {
+local function usage() {
   (>&2 print \
 "Usage:
   columncount [options] <file> [<delimiter>]
@@ -14,6 +16,8 @@ Options:
   -h, --help             Show this help and exits.
 ")
 }
+
+local opt
 
 while getopts ":h" opt; do
   case $opt in
@@ -34,3 +38,5 @@ local mincol=$(awk -F"${2:-,}" "{print NF}" $1 | sort -nu | head -n 1;)
 local maxcol=$(awk -F"${2:-,}" "{print NF}" $1 | sort -nu | tail -n 1;)
 
 echo "$mincol $maxcol"
+
+return 0

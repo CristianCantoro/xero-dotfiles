@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 ## Deduplicate entries in PATH
 ## Works on bash and zsh
 ## See;
@@ -58,10 +58,9 @@ export PATH=''
    fi
 
   if $add_flag; then
-     PATH="${old_path}:${path_element}"
-   fi
 
-
+    PATH="${old_path}:${path_element}"
+  fi
 done
 
 PATH="$(echo "$PATH" | /usr/bin/cut -c 2-)"
