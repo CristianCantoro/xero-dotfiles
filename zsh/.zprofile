@@ -110,6 +110,6 @@ export PATH="$HOME/.rvm/bin:$PATH"
 [ -f "$HOME/.restic/environment" ] && \
   source "$HOME/.restic/environment"
 
-# add restic env vars
+# add bup env vars
 [ -f "$HOME/.bup/environment" ] && \
   source "$HOME/.bup/environment"
