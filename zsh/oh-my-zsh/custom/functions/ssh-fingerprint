@@ -18,6 +18,8 @@ Example:
 }
 
 local function __ssh-fingerprint() {
+
+  local host="$1"
   local opt
   local ssh_public_keys
 
@@ -34,11 +36,11 @@ local function __ssh-fingerprint() {
   done
 
   # get ssh public keys
-  ssh_public_keys="$(ssh-keyscan "$1" 2>/dev/null)"
+  ssh_public_keys="$(ssh-keyscan "$host" 2>/dev/null)"
   if [ ! -z "$ssh_public_keys" ]; then
     ssh-keygen -l -f <(echo "$ssh_public_keys")
   else
-    (>&2 echo "No public keys found for host $opt not recognized." )
+    (>&2 echo "No public keys found for host '$host'." )
   fi
 
 }
