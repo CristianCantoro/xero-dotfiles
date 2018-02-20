@@ -5,8 +5,8 @@ case $TERM in
   rxvt|*term|gnome-*)
 
     # fix issue with %[A-z], zsh interpret these symbols as
-	# command sequences with a special meaning:
-	# See:
+   	# command sequences with a special meaning:
+	  # See:
     # https://github.com/robbyrussell/oh-my-zsh/issues/521
     # https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/435336
     precmd() { print -Pn $'\e]0;%m:::$(basename $PWD)\a' }
@@ -55,6 +55,18 @@ if [[ $UID -ne 0 ]]; then
   fi
 fi
 
+# add restic env vars
+[ -f "$HOME/.restic/environment" ] && \
+  source "$HOME/.restic/environment"
+
+# add bup env vars
+[ -f "$HOME/.bup/environment" ] && \
+  source "$HOME/.bup/environment"
+
+# Load RVM into a shell session *as a function*
+  # shellcheck disable=SC1090
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 # startup virtualenv-burrito
 # See:
 # https://github.com/brainsik/virtualenv-burrito
@@ -65,11 +77,17 @@ fi
 
 # Linuxbrew
 # See https://linuxbrew.sh
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-export PATH="$HOME/.linuxbrew/sbin:$PATH"
-export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-export XDG_DATA_DIRS="$HOME/.linuxbrew/share:$XDG_DATA_DIRS"
+export PATH="$PATH:$HOME/.linuxbrew/sbin:$HOME/.linuxbrew/bin"
+export MANPATH="$MANPATH:$HOME/.linuxbrew/share/man"
+export INFOPATH="$INFOPATH:$HOME/.linuxbrew/share/info"
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:$HOME/.linuxbrew/share"
+
+# Perl modules
+# shellcheck disable=SC2086
+PERL='/usr/bin/perl'
+export PERL
+export PERL5LIB="$HOME/perl5/"
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 
 # Add NVM
 # See https://github.com/creationix/nvm
@@ -79,10 +97,6 @@ export NVM_DIR="$(realpath $HOME/.nvm)"
 # Go
 # export GOPATH="$HOME/go"
 # export PATH="$HOME/go/bin:$PATH"
-
-# Perl modules
-# shellcheck disable=SC2086
-# eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 
 # azure-cli completion
 # source <(azure --completion)
@@ -104,12 +118,4 @@ export PATH="$HOME/.rvm/bin:$PATH"
 
 # add subuser to PATH
 [ -d "$HOME/.subuser" ] && \
-  PATH=$HOME/.subuser/bin:$PATH
-
-# add restic env vars
-[ -f "$HOME/.restic/environment" ] && \
-  source "$HOME/.restic/environment"
-
-# add bup env vars
-[ -f "$HOME/.bup/environment" ] && \
-  source "$HOME/.bup/environment"
+  export PATH=$HOME/.subuser/bin:$PATH
