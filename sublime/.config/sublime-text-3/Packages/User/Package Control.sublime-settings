@@ -5,9 +5,12 @@
 	],
 	"installed_packages":
 	[
+		"1337 Color Scheme",
 		"Awk",
+		"ColorSchemeEditor",
 		"Dark Pastel Color Scheme",
 		"Dockerfile Syntax Highlighting",
+		"LiveReload",
 		"Package Control",
 		"SublimeLinter",
 		"SublimeLinter-shellcheck",
