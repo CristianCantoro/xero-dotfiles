@@ -41,6 +41,12 @@ case "$(hostname)" in
 
       local user_color_user="$FG[023]"
       ;;
+  'cricca.disi.unitn.it')
+      local user_color_root="$fg[red]"
+      local at_color_root="$FG[140]"
+
+      local user_color_user="$FG[147]"
+	  ;;
   *)
       ;;
 esac
