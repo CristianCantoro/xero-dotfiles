@@ -31,7 +31,7 @@ if [ -d "$ZSH_CUSTOM/functions" ]; then
   done
 
   # if there are autocompletion files, force reload to activate them
-  set -- _*
+  set -- "$ZSH_CUSTOM"/functions/_*
   if [ "$#" -gt 0 ]; then
     source $ZSH/oh-my-zsh.sh
   fi
