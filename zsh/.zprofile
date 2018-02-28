@@ -89,8 +89,10 @@ export XDG_DATA_DIRS="$XDG_DATA_DIRS:$HOME/.linuxbrew/share"
 # shellcheck disable=SC2086
 PERL='/usr/bin/perl'
 export PERL
-export PERL5LIB="$HOME/perl5/"
-eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+if [ -d "$HOME/perl5" ]; then
+  export PERL5LIB="$HOME/perl5/"
+  eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+fi
 
 # Add NVM
 # See https://github.com/creationix/nvm
