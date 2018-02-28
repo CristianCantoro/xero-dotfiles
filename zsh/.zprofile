@@ -23,6 +23,9 @@ esac
 # Mass move
 autoload -U zmv
 
+# activate extended globbing
+setopt extended_glob
+
 # autoload function in $ZSH_CUSTOM/functions and autocompletions
 if [ -d "$ZSH_CUSTOM/functions" ]; then
   for funcfile in "$ZSH_CUSTOM"/functions/^_*(.); do
