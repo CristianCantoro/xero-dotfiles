@@ -12,6 +12,7 @@
 		"Dockerfile Syntax Highlighting",
 		"LiveReload",
 		"Package Control",
+		"Restart",
 		"SublimeLinter",
 		"SublimeLinter-shellcheck",
 		"ZSH"
