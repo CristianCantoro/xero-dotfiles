@@ -37,7 +37,7 @@
 				<key>fontStyle</key>
 				<string />
 				<key>foreground</key>
-				<string>#C1C1C1</string>
+				<string>#B0B0B0</string>
 			</dict>
 		</dict>
 		<dict>
@@ -50,7 +50,7 @@
 				<key>fontStyle</key>
 				<string />
 				<key>foreground</key>
-				<string>#555555</string>
+				<string>#B0B0B0</string>
 			</dict>
 		</dict>
 		<dict>
