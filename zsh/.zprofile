@@ -80,10 +80,10 @@ fi
 
 # Linuxbrew
 # See https://linuxbrew.sh
-export PATH="$PATH:$HOME/.linuxbrew/sbin:$HOME/.linuxbrew/bin"
-export MANPATH="$MANPATH:$HOME/.linuxbrew/share/man"
-export INFOPATH="$INFOPATH:$HOME/.linuxbrew/share/info"
-export XDG_DATA_DIRS="$XDG_DATA_DIRS:$HOME/.linuxbrew/share"
+export PATH="$HOME/.linuxbrew/sbin:$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+export XDG_DATA_DIRS="$HOME/.linuxbrew/share:$XDG_DATA_DIRS"
 
 # Perl modules
 # shellcheck disable=SC2086

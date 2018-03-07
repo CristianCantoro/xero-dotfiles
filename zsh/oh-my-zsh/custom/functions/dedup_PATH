@@ -32,8 +32,7 @@ function add_to_PATH () {
 
 }
 
-local \
-  DEFAULT_PATH='/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin'
+export DEFAULT_PATH='/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin'
 
 local add_flag=true
 local old_path="$PATH"

@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+
+# list paths (':' -> '\n')
+# remove lines with linuxbrew
+# repackage to colon-separated list
+# remove trailing colon
+export PATH=$(echo $PATH | \
+              tr ':' '\n' | \
+              grep -v 'linuxbrew' | \
+              tr '\n' ':' | \
+              sed -e 's/:$//' \
+              )
+
+exit 0
