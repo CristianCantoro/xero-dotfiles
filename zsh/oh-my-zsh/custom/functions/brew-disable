@@ -11,4 +11,4 @@ export PATH=$(echo $PATH | \
               sed -e 's/:$//' \
               )
 
-exit 0
+return 0
