@@ -19,3 +19,6 @@
 [submodule "nvm/.nvm"]
 	path = nvm/.nvm
 	url = https://github.com/creationix/nvm.git
+[submodule "bash/.bash_it"]
+	path = bash/.bash_it
+	url = https://github.com/Bash-it/bash-it.git
