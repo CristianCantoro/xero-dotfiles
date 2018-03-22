@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2034,SC2154
 
+# shellcheck disable=SC1090,SC1091
+{
+source "$HOME/.bash_it/custom/themes/colors.bash"
+source "$HOME/.bash_it/custom/themes/hosts.bash"
+}
+
 git_green="${FG[113]}"
 GIT_THEME_PROMPT_DIRTY=" ${red}✗"
 GIT_THEME_PROMPT_CLEAN=" ${FG[bold]}${git_green}✓${reset_color}"
@@ -9,12 +15,6 @@ GIT_THEME_PROMPT_SUFFIX="${git_green}›${reset_color} "
 
 VIRTUALENV_THEME_PROMPT_PREFIX='‹'
 VIRTUALENV_THEME_PROMPT_SUFFIX='›'
-
-# shellcheck disable=SC1090,SC1091
-{
-source "$HOME/.bash_it/custom/themes/colors.bash"
-source "$HOME/.bash_it/custom/themes/hosts.bash"
-}
 
 parse_git_dirty () {
     local STATUS=''
