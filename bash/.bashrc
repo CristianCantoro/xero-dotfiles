@@ -132,6 +132,8 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# Load .bash_profile
+[[ -s "$HOME/.bash_profile" ]] && source "$HOME/.bash_profile"
 
 # Path to the bash it configuration
 export BASH_IT="$HOME/.bash_it"

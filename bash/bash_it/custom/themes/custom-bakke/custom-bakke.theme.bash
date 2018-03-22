@@ -42,16 +42,32 @@ parse_git_dirty () {
 
 function git_prompt_info () {
     local ref
-    if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" != "1" ]]
-    then
+    if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" != "1" ]]; then
         ref=$(command git symbolic-ref HEAD 2> /dev/null)  || ref=$(command git rev-parse --short HEAD 2> /dev/null)  || return 0
         echo "$GIT_THEME_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$GIT_THEME_PROMPT_SUFFIX"
     fi
 }
 
+function git_prompt() {
+    local ref
+    if [[ "$(command git config --get oh-my-zsh.hide-status 2>/dev/null)" != "1" ]]; then
+        ref=$(command git symbolic-ref HEAD 2> /dev/null)  || ref=$(command git rev-parse --short HEAD 2> /dev/null)  || return 0
+        echo "‹${ref#refs/heads/} X›"
+    fi
+}
+
 # shellcheck disable=SC1117,SC2016,SC2154
 function prompt_command() {
-     if [[ $UID -eq 0 ]]; then
+    return_code="$?"
+    return_status=''
+    if [ $return_code != 0 ]; then
+        return_status+="${FX[bold]}${red}$return_code"
+    else
+        return_status+="${FX[bold]}${green} "
+    fi
+    return_status+=" ↵${reset_color}"
+
+    if [[ $UID -eq 0 ]]; then
         user_host='${FX[bold]}'
         user_host+='${user_color_root}\u'
         user_host+='${at_color_root}@'
@@ -72,31 +88,52 @@ function prompt_command() {
     current_dir+="${reset_color}"
 
     local virtualenv_status
-    virtualenv_status="${yellow}$(virtualenv_prompt)${reset_color} "
+    virtualenv_status=" ${yellow}$(virtualenv_prompt)${reset_color} "
     if [[ -z "${virtualenv_status// }" ]]; then
         virtualenv_status=''
     fi
 
     local rvm_ruby="${red}"
+    local rvm_string=''
     if which rvm-prompt &> /dev/null; then
         rvm_ruby+='$([ ! -z "$(rvm-prompt i v g)" ] && echo "‹$(rvm-prompt i v g)›" || \
                   ([[ "x$(dirname $(which ruby))" == "x/usr/bin" ]] && echo "‹system›"))'
+        rvm_string+="$([ ! -z "$(rvm-prompt i v g)" ] && echo "‹$(rvm-prompt i v g)›" || \
+                  ([[ "x$(dirname "$(which ruby)")" == "x/usr/bin" ]] && echo "‹system›"))"
     else
         if which rbenv &> /dev/null; then
             rvm_ruby+='‹$(rbenv version | sed -e "s/ (set.*$//")›'
+            rvm_string+="‹$(rbenv version | sed -e "s/ (set.*$//")›"
         fi
     fi
     rvm_ruby+="${reset_color} "
+    rvm_string+=" "
     if [[ -z "${rvm_ruby// }" ]]; then
         rvm_ruby=''
+        rvm_string=''
     fi
+
 
     local git_branch
     git_branch="$(git_prompt_info)${reset_color}"
 
+    PS1="\n╭─${user_host} ${current_dir}${virtualenv_status}${rvm_ruby}"
+    PS1+="${git_branch}${return_status}\n"
+    PS1+="╰─${FG[bold]}${user_symbol}${FX[reset]} "
 
-    PS1="\n╭─${user_host} ${current_dir} ${virtualenv_status}${rvm_ruby}"
-    PS1+="${git_branch}\n"
+    current_dir_path=$(dirs +0)
+    initial_string="$USER@$HOSTNAME ${current_dir_path} $(virtualenv_prompt) ${rvm_string}"
+    initial_string+="$(git_prompt)"
+    final_string="$return_code ↵"
+
+    # echo "initial_string: $initial_string"
+    # echo "final_string: $final_string"
+
+    nPS=$((${#initial_string}+${#final_string}+3))
+    spaces=$(printf %"$((COLUMNS-nPS))"s)
+
+    PS1="\n╭─${user_host} ${current_dir}${virtualenv_status}${rvm_ruby}"
+    PS1+="${git_branch}${spaces}${return_status}\n"
     PS1+="╰─${FG[bold]}${user_symbol}${FX[reset]} "
 }
 
