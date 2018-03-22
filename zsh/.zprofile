@@ -70,14 +70,6 @@ fi
   # shellcheck disable=SC1090
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-# startup virtualenv-burrito
-# See:
-# https://github.com/brainsik/virtualenv-burrito
-if [ -f "$HOME/.venvburrito/startup.sh" ]; then
-    # shellcheck source=/dev/null
-    . "$HOME/.venvburrito/startup.sh"
-fi
-
 # Linuxbrew
 # See https://linuxbrew.sh
 export PATH="$HOME/.linuxbrew/sbin:$HOME/.linuxbrew/bin:$PATH"

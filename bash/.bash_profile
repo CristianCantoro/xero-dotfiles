@@ -25,10 +25,3 @@
 #else
 #    start_agent;
 #fi
-
-if which pyenv; then
-  export PATH="$HOME/.pyenv/bin:$PATH"
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-fi
-

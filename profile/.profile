@@ -27,3 +27,19 @@ tabs "$SHELL_TAB_SIZE"
 
 # set my GPG key
 export GPGKEY='0xF4B4A1414B2F9555'
+
+# python virtualenv
+if which pyenv &>/dev/null; then
+  echo 'foo'
+  export PATH="$HOME/.pyenv/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
+
+# startup virtualenv-burrito
+# See:
+# https://github.com/brainsik/virtualenv-burrito
+if [ -f "$HOME/.venvburrito/startup.sh" ]; then
+    # shellcheck source=/dev/null
+    . "$HOME/.venvburrito/startup.sh"
+fi
