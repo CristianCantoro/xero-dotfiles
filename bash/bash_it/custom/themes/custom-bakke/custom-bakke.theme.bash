@@ -128,7 +128,7 @@ function prompt_command() {
     nPS=$((${#initial_string}+${#final_string}+3))
     spaces=$(printf %"$((COLUMNS-nPS))"s)
 
-    PS1="\n${reset_color}╭─${user_host} ${current_dir}${virtualenv_status}${rvm_ruby}"
+    PS1="${reset_color}╭─${user_host} ${current_dir}${virtualenv_status}${rvm_ruby}"
     PS1+="${git_branch}${spaces}${return_status}\n"
     PS1+="╰─${FG[bold]}${user_symbol}${FX[reset]} "
 }
