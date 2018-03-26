@@ -47,6 +47,17 @@ case "$(hostname)" in
 
       local user_color_user="$FG[147]"
 	  ;;
+  'adige')
+	  local user_color_root="$fg[red]"
+      local at_color_root="$fg[yellow]"
+	  local host_color_root="$bg[yellow]$fg[black]"
+
+      local user_color_user="$fg[yellow]"
+	  local host_color_user="$bg[yellow]$fg[black]"
+	  ;;
+  *)
+      local user_color_user="$FG[147]"
+	  ;;
   *)
       ;;
 esac
