@@ -9,6 +9,7 @@
 #umask 022
 
 # set PATH so it includes user's private bin directories
+# if it exists
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
@@ -34,3 +35,13 @@ if [ -f "$HOME/.venvburrito/startup.sh" ]; then
     # shellcheck source=/dev/null
     . "$HOME/.venvburrito/startup.sh"
 fi
+
+# Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# Linuxbrew (linuxbrew.sh)
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+
