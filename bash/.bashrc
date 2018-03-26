@@ -5,10 +5,10 @@
 
 # debug
 if [ -z ${BASHRC_LOADED+x} ]; then
-  echo "sourcing $HOME/.bashrc"
+  # echo "sourcing $HOME/.bashrc"
   export BASHRC_LOADED=true
 else
-  echo "already sourced $HOME/.bashrc"
+  # echo "already sourced $HOME/.bashrc"
   return
 fi
 

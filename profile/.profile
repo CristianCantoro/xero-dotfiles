@@ -10,10 +10,10 @@
 
 # pragma guard
 if [ -z ${PROFILE_LOADED+x} ]; then
-  echo "sourcing $HOME/.bash_profile"
+  # echo "sourcing $HOME/.bash_profile"
   export PROFILE_LOADED=true
 else
-  echo "already sourced $HOME/.profile"
+  # echo "already sourced $HOME/.profile"
   return
 fi
 

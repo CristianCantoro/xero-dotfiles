@@ -1,9 +1,9 @@
 # debug
 if [ -z ${BASH_PROFILE_LOADED+x} ]; then
-  echo "sourcing $HOME/.bash_profile"
+  # echo "sourcing $HOME/.bash_profile"
   export BASH_PROFILE_LOADED=true
 else
-  echo "already sourced $HOME/.bash_profile"
+  # echo "already sourced $HOME/.bash_profile"
   return
 fi
 
