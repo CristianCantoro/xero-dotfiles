@@ -3,6 +3,15 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# debug
+if [ -z ${BASHRC_LOADED+x} ]; then
+  echo "sourcing $HOME/.bashrc"
+  export BASHRC_LOADED=true
+else
+  echo "already sourced $HOME/.bashrc"
+  return
+fi
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;

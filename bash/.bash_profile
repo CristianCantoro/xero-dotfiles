@@ -1,3 +1,15 @@
+# debug
+if [ -z ${BASH_PROFILE_LOADED+x} ]; then
+  echo "sourcing $HOME/.bash_profile"
+  export BASH_PROFILE_LOADED=true
+else
+  echo "already sourced $HOME/.bash_profile"
+  return
+fi
+
+# Load .bashrc
+[[ -s "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
+
 # Load the default .profile
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
 
