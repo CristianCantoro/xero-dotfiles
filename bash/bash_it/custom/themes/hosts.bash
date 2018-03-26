@@ -29,10 +29,10 @@ case "$(hostname)" in
 
       user_color_user="${FX[bold]}${FG[031]}"
       ;;
-  'judge')
-      user_color_user="${green}"
-      at_color_user="${white}"
-      host_color_user="${green}"
+  'judge.science.unitn.it')
+      user_color_user="${FG[010]}"
+      at_color_user="${FG[015]}"
+      host_color_user="${FG[010]}"
       ;;
   'arena.science.unitn.it')
 	  echo 'foo'
