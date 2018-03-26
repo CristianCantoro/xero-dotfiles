@@ -129,14 +129,6 @@ fi
 # alias per apt-get update
 alias aptupdate='sudo apt update && sudo apt --assume-yes upgrade'
 
-# Ruby Version Manager (RVM)
-# See:
-# https://rvm.io/
-# This adds RVM to PATH for scripting and loads RVM into a shell session
-# as a function
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # activate fzf history search
 # https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -195,3 +187,4 @@ export SCM_CHECK=true
 # Load Bash It
 # shellcheck disable=SC1090
 source "$BASH_IT"/bash_it.sh
+
