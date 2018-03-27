@@ -31,7 +31,6 @@ export GPGKEY='0xF4B4A1414B2F9555'
 
 # python virtualenv
 if which pyenv &>/dev/null; then
-  echo 'foo'
   export PATH="$HOME/.pyenv/bin:$PATH"
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
