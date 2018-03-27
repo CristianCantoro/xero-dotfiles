@@ -7,9 +7,11 @@ source "$HOME/.bash_it/custom/themes/colors.bash"
 source "$HOME/.bash_it/custom/themes/hosts.bash"
 }
 
-git_green="${FG[113]}"
-GIT_THEME_PROMPT_DIRTY=" ${red}✗"
-GIT_THEME_PROMPT_CLEAN=" ${FG[bold]}${git_green}✓${reset_color}"
+git_green="\[${FG[113]}\]"
+reset_color="\[${FX[reset]}\]"
+
+GIT_THEME_PROMPT_DIRTY=" ${FG[001]}✗"
+GIT_THEME_PROMPT_CLEAN=" ${FX[bold]}${git_green}✓${reset_color}"
 GIT_THEME_PROMPT_PREFIX="${git_green}‹"
 GIT_THEME_PROMPT_SUFFIX="${git_green}›${reset_color} "
 
@@ -61,39 +63,39 @@ function prompt_command() {
     return_code="$?"
     return_status=''
     if [ $return_code != 0 ]; then
-        return_status+="${FX[bold]}${red}$return_code"
+        return_status+="${FX[bold]}${FG[001]}$return_code"
     else
-        return_status+="${FX[bold]}${green} "
+        return_status+="${FX[bold]}${FG[002]} "
     fi
     return_status+=" ↵${reset_color}"
 
     if [[ $UID -eq 0 ]]; then
-        user_host='${FX[bold]}'
-        user_host+='${user_color_root}\u'
-        user_host+='${at_color_root}@'
-        user_host+='${host_color_root}\h'
+        user_host='\[${FX[bold]}\]'
+        user_host+='\[${user_color_root}\]\u'
+        user_host+='\[${at_color_root}\]@'
+        user_host+='\[${host_color_root}\]\h'
         user_host+="${reset_color}"
-        user_symbol='#'
+        user_symbol='\#'
     else
-        user_host='${FX[bold]}'
-        user_host+='${user_color_user}\u'
-        user_host+='${at_color_user}@'
-        user_host+='${host_color_user}\h'
+        user_host='\[${FX[bold]}\]'
+        user_host+='\[${user_color_user}\]\u'
+        user_host+='\[${at_color_user}\]@'
+        user_host+='\[${host_color_user}\]\h'
         user_host+="${reset_color}"
-        user_symbol='$'
+        user_symbol='\$'
     fi
 
-    local current_dir="${blue}"
+    local current_dir="\[${FG[004]}\]"
     current_dir+='${FX[bold]}\w'
     current_dir+="${reset_color}"
 
     local virtualenv_status
-    virtualenv_status=" ${yellow}$(virtualenv_prompt)${reset_color} "
+    virtualenv_status=" \[${FG[003]}\]$(virtualenv_prompt)${reset_color} "
     if [[ -z "${virtualenv_status// }" ]]; then
         virtualenv_status=''
     fi
 
-    local rvm_ruby="${red}"
+    local rvm_ruby="\[${FG[001]}\]"
     local rvm_string=''
     if which rvm-prompt &> /dev/null; then
         rvm_ruby+='$([ ! -z "$(rvm-prompt i v g)" ] && echo "‹$(rvm-prompt i v g)›" || \
@@ -130,7 +132,7 @@ function prompt_command() {
 
     PS1="${reset_color}╭─${user_host} ${current_dir}${virtualenv_status}${rvm_ruby}"
     PS1+="${git_branch}${spaces}${return_status}\n"
-    PS1+="╰─${FG[bold]}${user_symbol}${FX[reset]} "
+    PS1+="╰─${FG[bold]}${user_symbol}${reset_color} "
 }
 
 safe_append_prompt_command prompt_command

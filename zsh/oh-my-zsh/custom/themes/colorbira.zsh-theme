@@ -32,9 +32,9 @@ fi
 local current_dir='%{$terminfo[bold]$fg[blue]%}%~%{$reset_color%}'
 
 local virtualenv_status=''
-virtualenv_status+="%{$fg[yellow]%}"
+virtualenv_status+='%{$fg[yellow]%}'
 virtualenv_status+="$(virtualenv_prompt_info | sed -r 's#\[(.*)\]#‹\1›#')"
-virtualenv_status+="%{$reset_color%}"
+virtualenv_status+='%{$reset_color%}'
 
 local rvm_ruby=''
 if which rvm-prompt &> /dev/null; then
