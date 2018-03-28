@@ -4,7 +4,7 @@
 # for examples
 
 ## debug
-echo "sourcing $HOME/.bashrc"
+#echo "sourcing $HOME/.bashrc"
 #if [ -z ${BASHRC_LOADED+x} ]; then
 #  # echo "sourcing $HOME/.bashrc"
 #  export BASHRC_LOADED=true

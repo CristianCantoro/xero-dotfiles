@@ -8,8 +8,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-## pragma guard
-echo "sourcing $HOME/.profile"
+## debug
+#echo "sourcing $HOME/.profile"
 #if [ -z ${PROFILE_LOADED+x} ]; then
 #  # echo "sourcing $HOME/.profile"
 #  export PROFILE_LOADED=true
