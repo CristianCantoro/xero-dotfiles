@@ -22,7 +22,8 @@
 # is not defined the precedent is used.
 # No color equals to white.
 
-case "$(hostname)" in
+host="$(echo "$HOSTNAME" |  cut -d'.' -f1)"
+case "$host" in
   'inara')
       local user_color_root="$fg[red]"
       local at_color_root="$FG[031]"
@@ -41,7 +42,7 @@ case "$(hostname)" in
 
       local user_color_user="$FG[023]"
       ;;
-  'cricca.disi.unitn.it')
+  'cricca')
       local user_color_root="$fg[red]"
       local at_color_root="$FG[140]"
 

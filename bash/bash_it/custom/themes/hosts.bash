@@ -22,19 +22,20 @@
 # is not defined the precedent is used.
 # No color equals to white.
 
-case "$(hostname)" in
+host="$(echo "$HOSTNAME" |  cut -d'.' -f1)"
+case "$host" in
   'inara')
       user_color_user="${FX[bold]}${red}"
       at_color_root="${FX[bold]}${FG[031]}"
 
       user_color_user="${FX[bold]}${FG[031]}"
       ;;
-  'judge.science.unitn.it')
+  'judge')
       user_color_user="${FG[010]}"
       at_color_user="${FG[015]}"
       host_color_user="${FG[010]}"
       ;;
-  'arena.science.unitn.it')
+  'arena')
       user_color_user="${FG[010]}"
       at_color_user="${FG[015]}"
       host_color_user="${FG[009]}"

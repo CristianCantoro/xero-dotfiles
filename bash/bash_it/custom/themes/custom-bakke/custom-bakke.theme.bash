@@ -120,7 +120,8 @@ function prompt_command() {
     git_branch="$(git_prompt_info)${reset_color}"
 
     current_dir_path=$(dirs +0)
-    initial_string="$USER@$HOSTNAME ${current_dir_path} $(virtualenv_prompt) ${rvm_string}"
+    host="$(echo "$HOSTNAME" |  cut -d'.' -f1)"
+    initial_string="$USER@$host ${current_dir_path} $(virtualenv_prompt) ${rvm_string}"
     initial_string+="$(git_prompt)"
     final_string="$return_code ↵"
 
