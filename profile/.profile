@@ -8,14 +8,15 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-# pragma guard
-if [ -z ${PROFILE_LOADED+x} ]; then
-  # echo "sourcing $HOME/.bash_profile"
-  export PROFILE_LOADED=true
-else
-  # echo "already sourced $HOME/.profile"
-  return
-fi
+## pragma guard
+echo "sourcing $HOME/.profile"
+#if [ -z ${PROFILE_LOADED+x} ]; then
+#  # echo "sourcing $HOME/.profile"
+#  export PROFILE_LOADED=true
+#else
+#  # echo "already sourced $HOME/.profile"
+#  return
+#fi
 
 # set PATH so it includes user's private bin directories
 # if it exists

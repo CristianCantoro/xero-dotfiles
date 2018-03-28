@@ -3,14 +3,15 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# debug
-if [ -z ${BASHRC_LOADED+x} ]; then
-  # echo "sourcing $HOME/.bashrc"
-  export BASHRC_LOADED=true
-else
-  # echo "already sourced $HOME/.bashrc"
-  return
-fi
+## debug
+echo "sourcing $HOME/.bashrc"
+#if [ -z ${BASHRC_LOADED+x} ]; then
+#  # echo "sourcing $HOME/.bashrc"
+#  export BASHRC_LOADED=true
+#else
+#  # echo "already sourced $HOME/.bashrc"
+#  return
+#fi
 
 # If not running interactively, don't do anything
 case $- in
@@ -134,7 +135,7 @@ alias aptupdate='sudo apt update && sudo apt --assume-yes upgrade'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Load .bash_profile
-[[ -s "$HOME/.bash_profile" ]] && source "$HOME/.bash_profile"
+#[[ -s "$HOME/.bash_profile" ]] && source "$HOME/.bash_profile"
 
 # Path to the bash it configuration
 export BASH_IT="$HOME/.bash_it"

@@ -35,7 +35,6 @@ case "$(hostname)" in
       host_color_user="${FG[010]}"
       ;;
   'arena.science.unitn.it')
-	  echo 'foo'
       user_color_user="${FG[010]}"
       at_color_user="${FG[015]}"
       host_color_user="${FG[009]}"
