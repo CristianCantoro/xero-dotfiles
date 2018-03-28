@@ -22,10 +22,10 @@
 # is not defined the precedent is used.
 # No color equals to white.
 
-host="$(echo "$HOSTNAME" |  cut -d'.' -f1)"
+host="$(echo "$(hostname)" |  cut -d'.' -f1)"
 case "$host" in
   'inara')
-      user_color_user="${FX[bold]}${red}"
+      user_color_user="${FX[bold]}${FG[001]}"
       at_color_root="${FX[bold]}${FG[031]}"
 
       user_color_user="${FX[bold]}${FG[031]}"
