@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# shellcheck disable=SC2154
+# shellcheck disable=SC2034,SC2154,SC2168
 # You can define a color for the following 3 parts of the
 # prompt:
 #   - the <user> name
@@ -22,7 +22,7 @@
 # is not defined the precedent is used.
 # No color equals to white.
 
-host="$(echo "$(hostname)" |  cut -d'.' -f1)"
+host="$(hostname |  cut -d'.' -f1)"
 case "$host" in
   'inara')
       user_color_user="${FX[bold]}${FG[001]}"
@@ -40,6 +40,6 @@ case "$host" in
       at_color_user="${FG[015]}"
       host_color_user="${FG[009]}"
       ;;
- *)
+  *)
       ;;
 esac
