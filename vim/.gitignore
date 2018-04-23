@@ -1,1 +1,3 @@
+# ignore .netrwhist
 .vim/.netrwhist
+.config/nvim/.netrwhist
