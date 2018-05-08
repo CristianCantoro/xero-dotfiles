@@ -31,10 +31,14 @@ fi
 
 local current_dir='%{$terminfo[bold]$fg[blue]%}%~%{$reset_color%}'
 
-local virtualenv_status=''
-virtualenv_status+='%{$fg[yellow]%}'
-virtualenv_status+="$(virtualenv_prompt_info | sed -r 's#\[(.*)\]#‹\1›#')"
-virtualenv_status+='%{$reset_color%}'
+function _virtualenv_prompt_info() {
+    local virtualenv_status=''
+    virtualenv_status+='%{$fg[yellow]%}'
+    virtualenv_status+='$(virtualenv_prompt_info | sed -r "s#\[(.*)\]#‹\1› #")'
+    virtualenv_status+='%{$reset_color%}'
+
+    echo "$virtualenv_status"
+}
 
 local rvm_ruby=''
 if which rvm-prompt &> /dev/null; then
@@ -51,6 +55,6 @@ fi
 
 local git_branch='$(git_prompt_info)%{$reset_color%}'
 
-PROMPT="╭─${user_host} ${current_dir} ${virtualenv_status} ${rvm_ruby} ${git_branch}
+PROMPT="╭─${user_host} ${current_dir} $(_virtualenv_prompt_info)${rvm_ruby} ${git_branch}
 ╰─%B${user_symbol}%b "
 RPS1="%B${return_code}%b"
