@@ -116,3 +116,7 @@ export PATH="$HOME/.rvm/bin:$PATH"
 # add subuser to PATH
 [ -d "$HOME/.subuser" ] && \
   export PATH=$HOME/.subuser/bin:$PATH
+
+# add spark env variables
+export SPARK_HOME='/opt/spark/spark'
+export PATH="$SPARK_HOME/bin:$PATH"
