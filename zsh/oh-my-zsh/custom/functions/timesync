@@ -1,0 +1,39 @@
+#!/usr/bin/env zsh
+
+# get SSH server fingerprint
+# https://unix.stackexchange.com/questions/126908
+
+function __timesync_usage() {
+  (>&2 print \
+"Usage:
+  timesync [options]
+
+Sync date on the machine with time from google.com.
+
+Options:
+  -h, --help             Show this help and exits.
+
+Example:
+  ssh-fingerprint localhost")
+}
+
+local function __timesync() {
+
+  while getopts ":h" opt; do
+    case $opt in
+      h)
+        __timesync_usage
+        return 0
+        ;;
+      *)
+        (>&2 echo "Flag $opt not recognized." )
+        ;;
+    esac
+  done
+
+  date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | \
+             grep Date: | cut -d' ' -f5-8)Z"
+
+}
+
+__timesync "$@"
