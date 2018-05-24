@@ -1,0 +1,50 @@
+#!/usr/bin/env zsh
+
+function __minmax_usage() {
+  (>&2 print \
+"Usage:
+  minmax [options]
+
+Find the minimum and maximum values in a column of numbers.
+
+Options:
+  -h, --help             Show this help and exits.
+
+Example:
+  minmax numbers.csv")
+}
+
+local function __minmax() {
+
+  while getopts ":h" opt; do
+    case $opt in
+      h)
+        __minmax_usage
+        return 0
+        ;;
+      *)
+        (>&2 echo "Flag $opt not recognized." )
+        ;;
+    esac
+  done
+
+  # Taken from:
+  # Embedding awk in a shell script
+  # https://stackoverflow.com/a/15020506/2377454
+  #
+  # AWK script
+  local minmax_script
+  read -d '' minmax_script <<'EOF'
+  BEGIN { min = max = "NaN" }
+  {
+      min = (NR==1 || $1<min+0 ? $1 : min)
+      max = (NR==1 || $1>max+0 ? $1 : max)
+  }
+  END { print min, max }
+EOF
+  ################################
+
+  awk "$minmax_script" "$@"
+}
+
+__minmax "$@"
