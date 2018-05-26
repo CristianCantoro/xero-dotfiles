@@ -6,7 +6,7 @@
 function __timesync_usage() {
   (>&2 print \
 "Usage:
-  timesync [options]
+  [sudo] timesync [options]
 
 Sync date on the machine with time from google.com.
 
@@ -14,7 +14,7 @@ Options:
   -h, --help             Show this help and exits.
 
 Example:
-  ssh-fingerprint localhost")
+  sudo timesync")
 }
 
 local function __timesync() {
