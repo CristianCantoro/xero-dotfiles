@@ -35,15 +35,23 @@ local function __minmax() {
   # AWK script
   local minmax_script
   read -d '' minmax_script <<'EOF'
-  BEGIN { min = max = "NaN" }
+  BEGIN { min = max = "NaN"; n = 0 }
   {
       min = (NR==1 || $1<min+0 ? $1 : min)
       max = (NR==1 || $1>max+0 ? $1 : max)
+      sum += $1
+      n++
   }
-  END { print min, max }
+  END { printf "%.2f %.2f", min, max
+        if (n > 0) {
+            printf " %.2f", sum/n
+        } else {
+            printf " NaN"
+        }
+        printf "\\n"
+  }
 EOF
   ################################
-
   awk "$minmax_script" "$@"
 }
 
