@@ -4,6 +4,7 @@
 function _theme() {
   unset -f _theme
 
+  # import per-host prompt color definitions
   source "$ZSH_CUSTOM/themes/hosts.themes"
 
   local c
@@ -12,14 +13,15 @@ function _theme() {
 
   local user_symbol
 
-  # shellcheck disable=SC2016,SC2154
   if [[ $UID -eq 0 ]]; then
+    # user is root
     c="${user_color_root}"
     a="${at_color_root}"
     h="${host_color_root}"
 
     user_symbol='#'
   else
+    # user is not root
     c="${user_color_user}"
     a="${at_color_user}"
     h="${host_color_user}"
@@ -27,10 +29,15 @@ function _theme() {
     user_symbol='$'
   fi
 
+  # user@host cwd
   local user_host='%{$terminfo[bold]%}'$c'%n'$a'@'$h'%m$reset_color%}'
   local current_dir='%{$terminfo[bold]${fg[blue]}%}%~%{$reset_color%}'
-  local return_code="%(?..%{${fg[red]}%}%? ↵%{$reset_color%})"
 
+  # git
+  # if in repo:
+  #  - clean: ‹branch ✓›
+  #  - dirty: ‹branch ✗›
+  # else empty.
   function _gitp() {
     unset -f _gitp
 
@@ -48,6 +55,8 @@ function _theme() {
   _gitp
   gitp='%{$(git_prompt_info)$reset_color%}'
 
+  # virtualenv
+  # if virtualenv is active: ‹virtualenv›. else empty.
   function _venvp() {
     unset -f _venvp
     local venvp=''
@@ -59,6 +68,7 @@ function _theme() {
     echo "$venvp"
   }
 
+  # helper functions for ruby prompt
   function rvm_prompt_active() {
     return 1
   }
@@ -75,6 +85,11 @@ function _theme() {
     }
   }
 
+  # ruby
+  # if rvm_prompt_active (rvm_activate_prompt/rvm_deactivate_prompt):
+  #  - if rvm: ‹ruby_version› or ‹system›
+  #  - if rbenv: ‹ruby_version›
+  # else empty.
   function _rvmp() {
 
     local rvmp=''
@@ -98,10 +113,13 @@ function _theme() {
     echo "$rvmp"
   }
 
+  # prompt: user@host cwd ‹virtualenv› ‹ruby› ‹git›
   PROMPT="╭─${user_host} ${current_dir}$(_venvp)$(_rvmp)${gitp}"
   PROMPT+="
 ╰─%B${user_symbol}%b "
 
+  # if the previous command return code is non-zero print it in red
+  local return_code="%(?..%{${fg[red]}%}%? ↵%{$reset_color%})"
   # shellcheck disable=SC2034
   RPS1="%B${return_code}%b"
 
