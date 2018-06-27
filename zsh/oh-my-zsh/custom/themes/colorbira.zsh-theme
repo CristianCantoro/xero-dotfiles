@@ -1,4 +1,4 @@
-# shellcheck disable=SC1090,SC1091,SC2016,SC2034,SC2148,SC2154,SC2168
+# shellcheck disable=SC1090,SC2016,SC2148,SC2154
 # ZSH Theme
 
 function _theme() {
@@ -36,12 +36,13 @@ function _theme() {
 
     local git_green="${FG[113]}"
 
-    # shellcheck disable=SC2154
+    # shellcheck disable=SC2034
+    {
     ZSH_THEME_GIT_PROMPT_DIRTY=" ${fg[red]}✗"
     ZSH_THEME_GIT_PROMPT_CLEAN=" ${FX[bold]}✓$reset_color"
     ZSH_THEME_GIT_PROMPT_PREFIX=" $git_green‹"
     ZSH_THEME_GIT_PROMPT_SUFFIX="$git_green›$reset_color"
-
+    }
   }
   local gitp=''
   _gitp
@@ -79,11 +80,19 @@ function _theme() {
     local rvmp=''
     if command -v rvm-prompt &> /dev/null; then
       rvmp='%{$fg[red]%}'
-      rvmp+='$($(rvm_prompt_active) && ([ ! -z "$(rvm-prompt i v g)" ] && echo " ‹$(rvm-prompt i v g)›" || \
-                      ([[ "x$(dirname $(command -v ruby))" == "x/usr/bin" ]] && echo " ‹system›")))'
+
+      rvmp+='$($(rvm_prompt_active) &&
+                ([ ! -z "$(rvm-prompt i v g)" ] &&
+                  echo " ‹$(rvm-prompt i v g)›"
+                ) ||
+                ([[ "x$(dirname $(command -v ruby))" == "x/usr/bin" ]] &&
+                  echo " ‹system›"
+                )
+              )'
       rvmp+='%{$reset_color%}'
     elif command -v rbenv &> /dev/null; then
-      rvmp='%{$fg[red]%} ‹$(rbenv version | sed -e "s/ (set.*$//")›%{$reset_color%}'
+      rvmp='%{$fg[red]%} ‹$(rbenv version |
+              sed -e "s/ (set.*$//")›%{$reset_color%}'
     fi
 
     echo "$rvmp"
@@ -93,14 +102,14 @@ function _theme() {
   PROMPT+="
 ╰─%B${user_symbol}%b "
 
+  # shellcheck disable=SC2034
   RPS1="%B${return_code}%b"
 
-  # we need tp cleanup because we are not sure _venv, _rvm are called
   function _cleanup() {
+    unset -f _cleanup
+
     unset -f _venvp
     unset -f _rvmp
-
-    unset -f _cleanup
   }
 
   _cleanup
