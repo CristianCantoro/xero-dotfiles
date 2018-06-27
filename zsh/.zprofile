@@ -14,6 +14,12 @@ case $TERM in
     ;;
 esac
 
+# Getting command-not-found working under zsh
+# https://askubuntu.com/a/324761/71067
+if [[ -s '/etc/zsh_command_not_found' ]]; then
+  source '/etc/zsh_command_not_found'
+fi
+
 # reload theme
 ( [ -f "$ZSH/themes/$ZSH_THEME.zsh-theme" ] && \
     source "$ZSH/themes/$ZSH_THEME.zsh-theme" ) && \
