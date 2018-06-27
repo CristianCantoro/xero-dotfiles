@@ -8,11 +8,8 @@
 #  return
 #fi
 
-# Load .bashrc
-[[ -s "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
-
 # Load the default .profile
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
+[[ -f "$HOME/.profile" ]] && source "$HOME/.profile"
 
 # FIXME: this is causing some issues with agent forwarding
 # activate ssh-agent on login
