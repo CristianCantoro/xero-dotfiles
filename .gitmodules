@@ -22,3 +22,6 @@
 [submodule "bash/.bash_it"]
 	path = bash/.bash_it
 	url = https://github.com/Bash-it/bash-it.git
+[submodule "zsh/oh-my-zsh/custom/themes/colorbira"]
+	path = zsh/oh-my-zsh/custom/themes/colorbira
+	url = git@github.com:CristianCantoro/colorbira-zsh-theme.git
