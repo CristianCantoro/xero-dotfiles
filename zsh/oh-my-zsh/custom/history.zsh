@@ -6,21 +6,9 @@ HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
 
-# Uncomment the following line if you want to change the command execution
-# timestamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="yyyy-mm-dd hh:MM:SS "
-# with this setting you need this alias (by default history is aliased
-# to 'fc -l 1').
-# alias history="fc -il 1"
-
-# However, if you also want seconds, the solution above doesn't work as you
-# would expect.
-# See also:
-# How do you display seconds in time?
-# https://github.com/robbyrussell/oh-my-zsh/issues/6109
-HIST_FORMAT="'%Y-%m-%d %T:'$(echo -e '\t')"
-alias history="fc -t "$HIST_FORMAT" -il 1"
+# Add support for custom timestamp format in history
+# https://github.com/robbyrussell/oh-my-zsh/pull/6770
+HIST_STAMPS='%Y-%m-%d %T:'
 
 # Treat the '!' character specially during expansion.
 setopt BANG_HIST
