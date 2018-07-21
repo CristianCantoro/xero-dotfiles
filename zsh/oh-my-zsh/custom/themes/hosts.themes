@@ -42,6 +42,14 @@ case "$host" in
 
       local user_color_user="${FG[023]}"
       ;;
+  'river')
+      local user_color_root="${fg[red]}"
+      local at_color_root="${fg[white]}"
+      local host_color_root="${FG[045]}"
+
+      local user_color_user="${fg[white]}"
+      local host_color_user="${FG[045]}"
+      ;;
   'cricca')
       local user_color_root="${fg[red]}"
       local at_color_root="${FG[140]}"
