@@ -5,8 +5,8 @@ case $TERM in
   rxvt|*term|gnome-*)
 
     # fix issue with %[A-z], zsh interpret these symbols as
-   	# command sequences with a special meaning:
-	  # See:
+    # command sequences with a special meaning:
+    # See:
     # https://github.com/robbyrussell/oh-my-zsh/issues/521
     # https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/435336
     precmd() { print -Pn $'\e]0;%m:::$(basename $PWD)\a' }
