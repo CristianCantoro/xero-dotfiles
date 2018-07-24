@@ -44,10 +44,11 @@ case "$host" in
       ;;
   'river')
       local user_color_root="${fg[red]}"
-      local at_color_root="${fg[white]}"
+      local at_color_root="${FG[007]}"
       local host_color_root="${FG[045]}"
 
       local user_color_user="${fg[white]}"
+      local at_color_user="${fg[red]}"
       local host_color_user="${FG[045]}"
       ;;
   'cricca')
