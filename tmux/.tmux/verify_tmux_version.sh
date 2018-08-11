@@ -44,16 +44,15 @@ verify_tmux_version () {
     if version_compare "$tmux_version" '>=' '2.1'; then
         echo "tmux version >= 2.1"
         tmux source-file "$tmux_home/tmux_2.1_up.conf"
-        exit
     elif version_compare "$tmux_version" '>=' '1.9'; then
         echo "tmux version >= 1.9"
         tmux source-file "$tmux_home/tmux_1.9_to_2.1.conf"
-        exit
     else
         echo "tmux version < 1.9"
         tmux source-file "$tmux_home/tmux_1.9_down.conf"
-        exit
     fi
 }
 
 verify_tmux_version
+
+exit 0
