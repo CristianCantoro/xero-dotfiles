@@ -1,0 +1,2 @@
+# clean bashrc, just the prompt
+PS1="\u@\h \w \\$\[$(tput sgr0)\]"

@@ -83,3 +83,13 @@ alias brewupdate='brew update && brew upgrade'
 # BFG Repo-Cleaner
 # https://rtyley.github.io/bfg-repo-cleaner/
 alias bfg='java -jar /opt/BFG_repocleaner/bfg.jar'
+
+# Start a clean bash shell
+# https://unix.stackexchange.com/q/48994/162158
+alias cleanbash='env -i
+                  HOME="$HOME"
+                  LC_CTYPE="${LC_ALL:-${LC_CTYPE:-$LANG}}"
+                  PATH="$PATH"
+                  USER="$USER"
+                  TERM="$TERM"
+                    bash --noprofile --rcfile "$HOME/.cleanbashrc"'
