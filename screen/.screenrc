@@ -1,6 +1,6 @@
 # the following two lines give a two-line status, with the current window highlighted
 hardstatus alwayslastline
-hardstatus string '%{= kG}[%{G}%H%? %1`%?%{g}][%= %{= kw}%-w%{+b g} %n*%t%?(%u)%? %{-}%+w %=%{g}][%{B}%Y/%m/%d %{W}%0c%{g}]'
+hardstatus string '%{= kG}[%{G}%H%? %1`%?%{g}][%= %{= kw}%-w%{rk} %n*%t%?(%u)%? %{-}%+w %=%{g}][%{B}%Y/%m/%d %{W}%0c%{g}]'
 
 # set default shell to bash
 shell /bin/bash
