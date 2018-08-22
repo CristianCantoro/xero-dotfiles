@@ -9,7 +9,7 @@ shell /bin/bash
 #   https://gist.github.com/martijnvermaat/8070533
 #   https://gist.github.com/bcomnes/e756624dc1d126ba2eb6
 unsetenv SSH_AUTH_SOCK
-setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+setenv SSH_AUTH_SOCK "$HOME/.ssh/ssh_auth_sock.$HOSTNAME"
 
 # huge scrollback buffer
 defscrollback 5000
