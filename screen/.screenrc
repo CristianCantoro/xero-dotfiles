@@ -5,6 +5,12 @@ hardstatus string '%{= kG}[%{G}%H%? %1`%?%{g}][%= %{= kw}%-w%{rk} %n*%t%?(%u)%? 
 # set default shell to bash
 shell /bin/bash
 
+# SSH agent forwarding and screen/tmux
+#   https://gist.github.com/martijnvermaat/8070533
+#   https://gist.github.com/bcomnes/e756624dc1d126ba2eb6
+unsetenv SSH_AUTH_SOCK
+setenv SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+
 # huge scrollback buffer
 defscrollback 5000
 
