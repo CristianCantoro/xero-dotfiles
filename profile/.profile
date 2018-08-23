@@ -34,7 +34,7 @@ export GPGKEY='0xF4B4A1414B2F9555'
 export LANG='en_US.UTF-8'
 
 # python virtualenv
-if which pyenv &>/dev/null; then
+if command -v pyenv &>/dev/null; then
   export PATH="$HOME/.pyenv/bin:$PATH"
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
@@ -52,8 +52,46 @@ fi
 export PATH="$PATH:$HOME/.rvm/bin"
 
 # Load RVM into a shell session *as a function*
+# shellcheck disable=SC1090
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Linuxbrew (linuxbrew.sh)
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 
+# if SSH_AUTH_SOCK is unset then the agent is not working for sure
+if [ -z "${SSH_AUTH_SOCK+x}" ]; then
+  # activate ssh-agent on login
+  # https://stackoverflow.com/a/18915067/2377454
+
+  SSH_ENV="$HOME/.ssh/environment"
+
+  function start_ssh_agent {
+    echo -n 'Initialising new SSH agent...'
+
+    # start agent and save environment in SSH_ENV
+    ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    chmod 600 "${SSH_ENV}"
+
+    # source SSH_ENV
+    # shellcheck disable=SC1090
+    source "${SSH_ENV}" > /dev/null
+
+    ssh-add
+
+    echo ' succeeded'
+  }
+
+  # Source SSH settings, if applicable
+  if [ -f "${SSH_ENV}" ]; then
+    chmod 600 "${SSH_ENV}"
+
+    # shellcheck disable=SC1090
+    source "${SSH_ENV}" > /dev/null
+  fi
+
+  # if ssh-agent is not running and SSH_AGENT_PID not set
+  if ! pgrep -f ssh-agent > /dev/null && [ ! -z "${SSH_AGENT_PID}" ]; then
+    start_ssh_agent
+  fi
+
+fi
