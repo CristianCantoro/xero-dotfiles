@@ -11,3 +11,14 @@
 # Load the default .profile
 # shellcheck disable=SC1090
 [[ -f "$HOME/.profile" ]] && source "$HOME/.profile"
+
+# Set the title of a terminal window for screen
+function settitle() {
+
+  # we are in a screen session
+  if [ -n "$STY" ] ; then
+    echo "Setting screen titles to" "$@"
+    printf "\\033k%s\\033\\" "$@"
+    screen -X eval "at \\# title " "$@" "shelltitle" "$@"
+  fi
+}
