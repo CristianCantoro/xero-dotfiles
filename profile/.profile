@@ -23,6 +23,9 @@
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
+# hostname
+export HOSTNAME="$(hostname)"
+
 # set tab size to 2
 export SHELL_TAB_SIZE=2
 tabs "$SHELL_TAB_SIZE"
