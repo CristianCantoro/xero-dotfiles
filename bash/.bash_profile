@@ -12,6 +12,11 @@
 # shellcheck disable=SC1090
 [[ -f "$HOME/.profile" ]] && source "$HOME/.profile"
 
+if [ -f ~/.bashrc ]; then
+  # shellcheck disable=SC1090
+  . ~/.bashrc
+fi
+
 # Set the title of a terminal window for screen
 if [ -n "$STY" ]; then
   PROMPT_COMMAND='printf "\033k\033\134"'

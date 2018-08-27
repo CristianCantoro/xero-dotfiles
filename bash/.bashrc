@@ -187,5 +187,4 @@ export SCM_CHECK=true
 
 # Load Bash It
 # shellcheck disable=SC1090
-source "$BASH_IT"/bash_it.sh
-
+source "$BASH_IT/bash_it.sh"

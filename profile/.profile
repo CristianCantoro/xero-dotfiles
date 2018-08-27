@@ -8,23 +8,14 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-## debug
-#echo "sourcing $HOME/.profile"
-#if [ -z ${PROFILE_LOADED+x} ]; then
-#  # echo "sourcing $HOME/.profile"
-#  export PROFILE_LOADED=true
-#else
-#  # echo "already sourced $HOME/.profile"
-#  return
-#fi
-
 # set PATH so it includes user's private bin directories
 # if it exists
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
 
 # hostname
-export HOSTNAME="$(hostname)"
+HOSTNAME="$(hostname)"
+export HOSTNAME
 
 # set tab size to 2
 export SHELL_TAB_SIZE=2
