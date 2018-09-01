@@ -9,7 +9,9 @@ autoload -U zmv
 alias mmv='noglob zmv -W'
 
 # Alias for apt-get update/apt-get upgrade
-alias aptupdate='sudo apt update && sudo apt --assume-yes upgrade'
+if command -v apt &>/dev/null; then
+  alias aptupdate='sudo apt update && sudo apt --assume-yes upgrade'
+fi
 
 # Interactive version of move and copy
 alias mv='mv -i'
@@ -24,8 +26,14 @@ alias dirsize='du -h -s'
 # get my IP using http://canihazip.com/s
 # http://n3mesisfixx.blogspot.it/2013/02/
 #    what-is-my-public-ip-from-command-line.html
-alias canihazip='curl -w "\n" https://canihazip.com/s'
-alias getip='canihazip'
+if command -v curl &>/dev/null; then
+  alias canihazip='curl -w "\n" https://canihazip.com/s'
+elif command -v wget &>/dev/null; then
+  alias canihazip='wget https://canihazip.com/s -O - -q; echo'
+fi
+if command -v canihazip &>/dev/null; then
+  alias getip='canihazip'
+fi
 
 # Alias to generate random password
 alias genpass="</dev/urandom tr -dc '12345!@#$%qwertQWERTasdfgASDFGzxcvbZXCVB' \
@@ -35,7 +43,9 @@ alias genpass="</dev/urandom tr -dc '12345!@#$%qwertQWERTasdfgASDFGzxcvbZXCVB' \
 alias azure-activate='nvm use stable && . <(azure --completion)'
 
 # Show which port is listening on
-alias whichport='sudo netstat -tulpn'
+if command -v sudo &>/dev/null && command -v netstat &>/dev/null; then
+  alias whichport='sudo netstat -tulpn'
+fi
 
 # strip color from shell output
 # See:
@@ -78,11 +88,15 @@ alias ssh-remove="ssh-keygen -f '$HOME/.ssh/known_hosts' -R"
 alias gpg=gpg2
 
 # Linuxbrew update and upgrade
-alias brewupdate='brew update && brew upgrade'
+if command -v brew &>/dev/null; then
+  alias brewupdate='brew update && brew upgrade'
+fi
 
 # BFG Repo-Cleaner
 # https://rtyley.github.io/bfg-repo-cleaner/
-alias bfg='java -jar /opt/BFG_repocleaner/bfg.jar'
+if command -v java &>/dev/null && [ -f '/opt/BFG_repocleaner/bfg.jar' ]; then
+  alias bfg='java -jar /opt/BFG_repocleaner/bfg.jar'
+fi
 
 # Start a clean bash shell
 # https://unix.stackexchange.com/q/48994/162158
@@ -93,3 +107,9 @@ alias cleanbash='env -i
                   USER="$USER"
                   TERM="$TERM"
                     bash --noprofile --rcfile "$HOME/.cleanbashrc"'
+
+# use 'bat' instead of 'cat'
+# https://remysharp.com/2018/08/23/cli-improved
+if command -v bat &>/dev/null; then
+  alias cat='bat'
+fi
