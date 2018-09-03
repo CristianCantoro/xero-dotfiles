@@ -1,3 +1,4 @@
+#!/bin/bash
 # Aliases for a desktop system
 if [ "$XDG_SESSION_TYPE" = "x11" ]; then
 

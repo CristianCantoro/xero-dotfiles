@@ -27,6 +27,12 @@ export GPGKEY='0xF4B4A1414B2F9555'
 # set lang
 export LANG='en_US.UTF-8'
 
+for alias_file in ~/.aliases.d/*; do
+  # shellcheck disable=SC1090
+  source "$alias_file"
+done
+
+
 # python virtualenv
 if command -v pyenv &>/dev/null; then
   export PATH="$HOME/.pyenv/bin:$PATH"
