@@ -6,6 +6,9 @@ all: git
 .PHONY: git
 git: gitconfig
 gitconfig: ./gitconfig.d/gitconfig.*.config
+	@if [ -L '.gitconfig' ]; then\
+		unlink '.gitconfig';\
+	fi
 	ln -s "./gitconfig.d/gitconfig.$$(hostname).config" '.gitconfig'
 
 clean:
