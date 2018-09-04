@@ -1,4 +1,4 @@
-# ignore everything except config and config.d
-setup.sh
-README.md
-clusterssh
+# ignore everything .gitconfig
+gitconfig.d
+Makefile
+
