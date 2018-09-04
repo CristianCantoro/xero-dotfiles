@@ -5,12 +5,6 @@ hardstatus string '%{= kG}[%{G}%H%? %1`%?%{g}][%= %{= kw}%-w%{rk} %n*%t%?(%u)%? 
 # set default shell to bash
 shell /bin/bash
 
-# SSH agent forwarding and screen/tmux
-#   https://gist.github.com/martijnvermaat/8070533
-#   https://gist.github.com/bcomnes/e756624dc1d126ba2eb6
-unsetenv SSH_AUTH_SOCK
-setenv SSH_AUTH_SOCK "$HOME/.ssh/ssh_auth_sock.$HOSTNAME"
-
 # huge scrollback buffer
 defscrollback 5000
 
@@ -22,7 +16,7 @@ attrcolor b ".I"
 defbce on
 
 # termcapinfo
-# source "$HOME/.termcapinfo.screenrc"
+# source "$HOME/.screen/.termcapinfo.screenrc"
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 unsetenv PROMPT_COMMAND
 
@@ -46,6 +40,10 @@ focus up
 
 layout attach one
 layout select one
+
+# execute the command `chdir $PWD` when creating a new window
+bind c stuff "screen -X chdir \$PWD; bash ~/.screen/screen_ssh_auth_sock.sh; screen^M^L"
+bind ^c stuff "screen -X chdir \$PWD; bash ~/.screen/screen_ssh_auth_sock.sh; screen^M^L"
 
 # navigating regions with Ctrl-arrows
 bindkey "^[[1;5D" focus left

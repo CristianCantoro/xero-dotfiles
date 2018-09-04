@@ -18,14 +18,14 @@ declare -a sshconn
 IFS=' ' read -ra sshconn <<<"$SSH_CONNECTION"
 
 if [[ ! -z "$SSH_TTY" ]]; then
-  if [[ ! -z "$TMUX" ]]; then
+  if [[ ! -z "$STY" ]]; then
     if [[ "${sshconn[0]}" != "${sshconn[2]}" ]]; then
       if ! test "$SSH_AUTH_SOCK" ; then
         HOSTNAME="$(hostname)"
         export HOSTNAME
 
-        tmux_home="$HOME/.tmux"
-        tmux source-file "$tmux_home/tmux_ssh_auth_sock.conf"
+        SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock.$HOSTNAME"
+        export SSH_AUTH_SOCK
       fi
     fi
   fi
