@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -67,7 +68,7 @@ export PATH="$HOME/.linuxbrew/bin:$PATH"
 #   2
 function ssh_agent_cant_connect {
   ssh-add -l &>/dev/null
-  if [ "$?" == 2 ]; then
+  if [ "$?" -eq '2' ]; then
     return 0
   else
     return 1
