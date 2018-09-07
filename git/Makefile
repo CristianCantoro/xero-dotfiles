@@ -9,7 +9,7 @@ gitconfig: ./gitconfig.d/gitconfig.*.config
 	@if [ -L '.gitconfig' ]; then\
 		unlink '.gitconfig';\
 	fi
-	ln -s "./gitconfig.d/gitconfig.$$(hostname).config" '.gitconfig'
+	ln -s "./gitconfig.d/gitconfig.$$(hostname --short).config" '.gitconfig'
 
 clean:
 	rm -f gitconfig
