@@ -51,13 +51,6 @@ if [ -f "$HOME/.venvburrito/startup.sh" ]; then
     . "$HOME/.venvburrito/startup.sh"
 fi
 
-# Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.rvm/bin"
-
-# Load RVM into a shell session *as a function*
-# shellcheck disable=SC1090
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # Linuxbrew (linuxbrew.sh)
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 
@@ -138,10 +131,6 @@ fi
 [ -f "$HOME/.bup/environment" ] && \
   source "$HOME/.bup/environment"
 
-# Load RVM into a shell session *as a function*
-  # shellcheck disable=SC1090
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # Linuxbrew
 # See https://linuxbrew.sh
 export PATH="$HOME/.linuxbrew/sbin:$HOME/.linuxbrew/bin:$PATH"
@@ -185,12 +174,21 @@ fi
 # https://github.com/dainnilsson/scripts/blob/master/base-install/gpg.sh
 # export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 
-# Load RVM into a shell session *as a function*
-# Add RVM to PATH for scripting
+##############################################################################
+# RVM
 # See https://rvm.io
+##############################################################################
+# Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# Load RVM into a shell session *as a function*
+# shellcheck disable=SC1090
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 export PATH="$HOME/.rvm/bin:$PATH"
+
 # fix rvm-prompt issue
 # rvm-prompt i v g &>/dev/null
+##############################################################################
 
 # add subuser to PATH
 if [ -d "$HOME/.subuser" ]; then
