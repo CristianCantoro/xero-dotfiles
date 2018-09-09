@@ -20,6 +20,10 @@ defbce on
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 unsetenv PROMPT_COMMAND
 
+# disable the visual bell message
+# https://stackoverflow.com/q/23813869/2377454
+vbell off
+
 # mouse tracking allows to switch region focus by clicking
 mousetrack on
 
