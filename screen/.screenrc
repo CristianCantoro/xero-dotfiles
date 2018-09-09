@@ -16,7 +16,7 @@ attrcolor b ".I"
 defbce on
 
 # termcapinfo
-# source "$HOME/.screen/.termcapinfo.screenrc"
+# source "$HOME/.screen.d/.termcapinfo.screenrc"
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 unsetenv PROMPT_COMMAND
 
@@ -46,8 +46,8 @@ layout attach one
 layout select one
 
 # execute the command `chdir $PWD` when creating a new window
-bind c stuff "screen -X chdir \$PWD; bash ~/.screen/screen_ssh_auth_sock.sh; screen^M^L"
-bind ^c stuff "screen -X chdir \$PWD; bash ~/.screen/screen_ssh_auth_sock.sh; screen^M^L"
+bind c stuff "screen -X chdir \$PWD; bash ~/.screen.d/screen_ssh_auth_sock.sh; screen^M^L"
+bind ^c stuff "screen -X chdir \$PWD; bash ~/.screen.d/screen_ssh_auth_sock.sh; screen^M^L"
 
 # navigating regions with Ctrl-arrows
 bindkey "^[[1;5D" focus left
