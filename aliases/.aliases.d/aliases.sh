@@ -93,13 +93,15 @@ fi
 
 # Start a clean bash shell
 # https://unix.stackexchange.com/q/48994/162158
-alias cleanbash='env -i
-                  HOME="$HOME"
-                  LC_CTYPE="${LC_ALL:-${LC_CTYPE:-$LANG}}"
-                  PATH="$PATH"
-                  USER="$USER"
-                  TERM="$TERM"
-                    bash --noprofile --rcfile "$HOME/.cleanbashrc"'
+function cleanbash {
+  env -i \
+    HOME="$HOME" \
+    LC_CTYPE="${LC_ALL:-${LC_CTYPE:-$LANG}}" \
+    PATH="$PATH" \
+    USER="$USER" \
+    TERM="$TERM" \
+      bash --noprofile --rcfile "$HOME/.cleanbashrc"
+}
 
 # use 'bat' instead of 'cat'
 # https://remysharp.com/2018/08/23/cli-improved
