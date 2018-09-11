@@ -127,9 +127,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# alias per apt-get update
-alias aptupdate='sudo apt update && sudo apt --assume-yes upgrade'
-
 # activate fzf history search
 # https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
