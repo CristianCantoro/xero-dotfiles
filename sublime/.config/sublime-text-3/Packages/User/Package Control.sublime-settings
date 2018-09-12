@@ -18,6 +18,7 @@
 		"Restart",
 		"SublimeLinter",
 		"SublimeLinter-shellcheck",
+		"Tmux Syntax Highlight",
 		"ZSH"
 	]
 }
