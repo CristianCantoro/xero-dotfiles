@@ -9,10 +9,18 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+##############################################################################
+# Add ~/bin, ~/.local/bin to PATH
+#
 # set PATH so it includes user's private bin directories
 # if it exists
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+##############################################################################
+
+
+##############################################################################
+# DEFINITIONS
 
 # hostname
 HOSTNAME="$(hostname)"
@@ -27,7 +35,11 @@ export GPGKEY='0xF4B4A1414B2F9555'
 
 # set lang
 export LANG='en_US.UTF-8'
+##############################################################################
 
+
+##############################################################################
+# ALIASES
 # source aliases for bash/zsh
 if [ -d ~/.aliases.d ]; then
   for alias_file in ~/.aliases.d/*; do
@@ -35,6 +47,108 @@ if [ -d ~/.aliases.d ]; then
     source "$alias_file"
   done
 fi
+##############################################################################
+
+
+##############################################################################
+# SSH
+
+SSH_ENV="$HOME/.ssh/environment"
+
+# ssh-add -l returns the error code 2 if it cannot connect to the agent:
+#   $ ssh-add -l
+#   Error connecting to agent: No such file or directory
+#   $ echo $?
+#   2
+function ssh_agent_cant_connect() {
+  ssh-add -l &>/dev/null
+  if [ "$?" -eq '2' ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function ssh_agent_dump_env() {
+
+  if pgrep -f ssh-agent > /dev/null && [ ! -z "${SSH_AUTH_SOCK}" ]; then
+    num_processes="$(pgrep -f ssh-agent | wc -l)"
+    if [ "$num_processes" -gt '1' ]; then
+      (>&2 echo 'Multiple ssh-agent processes found. Exiting.' )
+      exit 1
+    fi
+
+    cat << EOF > "$SSH_ENV"
+SSH_AUTH_SOCK=$SSH_AUTH_SOCK; export SSH_AUTH_SOCK;
+SSH_AGENT_PID=$(pgrep -f 'ssh-agent'); export SSH_AGENT_PID;
+# echo Agent pid $(pgrep -f 'ssh-agent');
+EOF
+
+  else
+    echo 'No ssh-agent process and SSH_AUTH_SOCK not set, nothing to do.'
+    exit 0
+  fi
+}
+
+# if SSH_AUTH_SOCK is unset then the agent is not working for sure
+if [ -z "${SSH_AUTH_SOCK+x}" ]; then
+
+  if ssh_agent_cant_connect; then
+    # activate ssh-agent on login
+    # https://stackoverflow.com/a/18915067/2377454
+
+    function start_ssh_agent() {
+      echo 'Initialising new SSH agent...'
+
+      # start agent and save environment in SSH_ENV
+      (umask 066; ssh-agent | sed 's/^echo/# echo/' > "${SSH_ENV}")
+
+      # source SSH_ENV
+      # shellcheck disable=SC1090
+      source "${SSH_ENV}" > /dev/null
+
+      ssh-add
+    }
+
+    # Source SSH settings, if applicable
+    if test -r "${SSH_ENV}" && [ -f "${SSH_ENV}" ]; then
+      chmod 600 "${SSH_ENV}"
+
+      # shellcheck disable=SC1090
+      source "${SSH_ENV}" > /dev/null
+    fi
+
+    # if ssh-agent is not running and SSH_AGENT_PID not set
+    if ! pgrep -f ssh-agent > /dev/null && [ ! -z "${SSH_AGENT_PID}" ]; then
+      start_ssh_agent
+    fi
+  fi
+
+fi
+
+# Run SSH with GPG support
+# see:
+# https://github.com/dainnilsson/scripts/blob/master/base-install/gpg.sh
+# export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+##############################################################################
+
+
+##############################################################################
+# TMUX
+# tmux over ssh
+# See:
+#   https://balist.es/blog/2015/02/09/firing-tmux-when-logging-in-via-ssh/
+# this is disabled for root, if you are logging in via ssh as root, you have a
+# problem
+if [[ $UID -ne 0 ]]; then
+  # shellcheck disable=SC1090
+  source "$HOME/.scripts/tmux.sh"
+  # if TMUX is defined then set TERM to screen-256color
+  if [[ ! -z "$TMUX" ]]; then
+    export TERM='tmux-256color'
+  fi
+fi
+##############################################################################
 
 # python virtualenv
 if command -v pyenv &>/dev/null; then
@@ -49,76 +163,6 @@ fi
 if [ -f "$HOME/.venvburrito/startup.sh" ]; then
     # shellcheck source=/dev/null
     . "$HOME/.venvburrito/startup.sh"
-fi
-
-# Linuxbrew (linuxbrew.sh)
-export PATH="$HOME/.linuxbrew/bin:$PATH"
-
-# ssh-add -l returns the error code 2 if it cannot connect to the agent:
-#   $ ssh-add -l
-#   Error connecting to agent: No such file or directory
-#   $ echo $?
-#   2
-function ssh_agent_cant_connect {
-  ssh-add -l &>/dev/null
-  if [ "$?" -eq '2' ]; then
-    return 0
-  else
-    return 1
-  fi
-}
-
-# if SSH_AUTH_SOCK is unset then the agent is not working for sure
-if [ -z "${SSH_AUTH_SOCK+x}" ]; then
-
-  if ssh_agent_cant_connect; then
-    # activate ssh-agent on login
-    # https://stackoverflow.com/a/18915067/2377454
-
-    SSH_ENV="$HOME/.ssh/environment"
-
-    function start_ssh_agent {
-      echo 'Initialising new SSH agent...'
-
-      # start agent and save environment in SSH_ENV
-      (umask 066; ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}")
-
-      # source SSH_ENV
-      # shellcheck disable=SC1090
-      source "${SSH_ENV}" > /dev/null
-
-      ssh-add
-    }
-
-    # Source SSH settings, if applicable
-    if test -r "${SSH_ENV}"; then
-      chmod 600 "${SSH_ENV}"
-
-      # shellcheck disable=SC1090
-      source "${SSH_ENV}" > /dev/null
-    fi
-
-    # if ssh-agent is not running and SSH_AGENT_PID not set
-    if ! pgrep -f ssh-agent > /dev/null && [ ! -z "${SSH_AGENT_PID}" ]; then
-      start_ssh_agent
-    fi
-
-  fi
-
-fi
-
-# tmux over ssh
-# See:
-#   https://balist.es/blog/2015/02/09/firing-tmux-when-logging-in-via-ssh/
-# this is disabled for root, if you are logging in via ssh as root, you have a
-# problem
-if [[ $UID -ne 0 ]]; then
-  # shellcheck disable=SC1090
-  source "$HOME/.scripts/tmux.sh"
-  # if TMUX is defined then set TERM to screen-256color
-  if [[ ! -z "$TMUX" ]]; then
-    export TERM='tmux-256color'
-  fi
 fi
 
 # add restic env vars
@@ -169,15 +213,10 @@ fi
 # Add Haskell package manager (cargo) to path
 # export PATH="$HOME/.cargo/bin:$PATH"
 
-# Run SSH with GPG support
-# see:
-# https://github.com/dainnilsson/scripts/blob/master/base-install/gpg.sh
-# export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
-
 ##############################################################################
 # RVM
 # See https://rvm.io
-##############################################################################
+#
 # Add RVM to PATH for scripting
 export PATH="$HOME/.rvm/bin:$PATH"
 
@@ -189,13 +228,23 @@ export PATH="$HOME/.rvm/bin:$PATH"
 # rvm-prompt i v g &>/dev/null
 ##############################################################################
 
+
+##############################################################################
+# SUBUSER
+#
 # add subuser to PATH
 if [ -d "$HOME/.subuser" ]; then
   export PATH=$HOME/.subuser/bin:$PATH
 fi
+##############################################################################
 
+
+##############################################################################
+# SPARK
+#
 # add spark env variables
 if [ -d '/opt/spark/spark' ]; then
   export SPARK_HOME='/opt/spark/spark'
   export PATH="$SPARK_HOME/bin:$PATH"
 fi
+##############################################################################
