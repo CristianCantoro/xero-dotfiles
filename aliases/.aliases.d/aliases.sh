@@ -93,7 +93,7 @@ fi
 
 # Start a clean bash shell
 # https://unix.stackexchange.com/q/48994/162158
-function cleanbash {
+function cleanbash() {
   env -i \
     HOME="$HOME" \
     LC_CTYPE="${LC_ALL:-${LC_CTYPE:-$LANG}}" \
