@@ -234,7 +234,7 @@ export PATH="$HOME/.rvm/bin:$PATH"
 #
 # add subuser to PATH
 if [ -d "$HOME/.subuser" ]; then
-  export PATH=$HOME/.subuser/bin:$PATH
+  export PATH="$PATH:$HOME/.subuser/bin"
 fi
 ##############################################################################
 
@@ -245,6 +245,6 @@ fi
 # add spark env variables
 if [ -d '/opt/spark/spark' ]; then
   export SPARK_HOME='/opt/spark/spark'
-  export PATH="$SPARK_HOME/bin:$PATH"
+  export PATH="$PATH:$SPARK_HOME/bin"
 fi
 ##############################################################################
