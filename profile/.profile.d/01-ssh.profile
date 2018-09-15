@@ -25,18 +25,21 @@ function ssh_agent_dump_env() {
     num_processes="$(pgrep -f ssh-agent | wc -l)"
     if [ "$num_processes" -gt '1' ]; then
       (>&2 echo 'Multiple ssh-agent processes found. Exiting.' )
-      exit 1
+      return 1
     fi
 
-    cat << EOF > "$SSH_ENV"
+    (
+      umask 066
+      cat << EOF > "$SSH_ENV"
 SSH_AUTH_SOCK=$SSH_AUTH_SOCK; export SSH_AUTH_SOCK;
 SSH_AGENT_PID=$(pgrep -f 'ssh-agent'); export SSH_AGENT_PID;
 # echo Agent pid $(pgrep -f 'ssh-agent');
 EOF
+    )
 
   else
     echo 'No ssh-agent process and SSH_AUTH_SOCK not set, nothing to do.'
-    exit 0
+    return 0
   fi
 }
 
@@ -62,8 +65,6 @@ if [ -z "${SSH_AUTH_SOCK+x}" ]; then
 
     # Source SSH settings, if applicable
     if test -r "${SSH_ENV}" && [ -f "${SSH_ENV}" ]; then
-      chmod 600 "${SSH_ENV}"
-
       # shellcheck disable=SC1090
       source "${SSH_ENV}" > /dev/null
     fi
