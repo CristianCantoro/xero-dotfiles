@@ -42,13 +42,20 @@ export LANG='en_US.UTF-8'
 # ALIASES
 # source aliases for bash/zsh
 if [ -d ~/.aliases.d ]; then
-  # shellcheck disable=SC1090
-  source ~/.aliases.d/*.sh
+  # we need to loop over each file because source is ignoring each argumenta
+  # after the first
+	for alias_file in ~/.aliases.d/*.sh; do
+	 # shellcheck disable=SC1090
+	 source "$alias_file"
+	done
 fi
 ##############################################################################
 
 # we source all the files in the folder ~/.profile.d, ending with *.profile
 # shellcheck disable=SC1090
 if [ -d ~/.profile.d/ ]; then
-  source ~/.profile.d/*.profile
+	for profile_file in ~/.profile.d/*.profile; do
+	 # shellcheck disable=SC1090
+	 source "$profile_file"
+	done
 fi
