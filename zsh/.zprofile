@@ -1,6 +1,15 @@
 # Load the default .profile, should be shell safe
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
 
+# Mass move
+autoload -U zmv
+
+# pushd options
+setopt autopushd pushdminus pushdsilent pushdtohome
+
+# activate extended globbing
+setopt extended_glob
+
 case $TERM in
   rxvt|*term|gnome-*)
 
@@ -25,12 +34,6 @@ fi
     source "$ZSH/themes/$ZSH_THEME.zsh-theme" ) && \
   ( [ -f "$ZSH/custom/themes/$ZSH_THEME.zsh-theme" ] && \
     source "$ZSH/custom/themes/$ZSH_THEME.zsh-theme")
-
-# Mass move
-autoload -U zmv
-
-# activate extended globbing
-setopt extended_glob
 
 # autoload function in $ZSH_CUSTOM/functions and autocompletions
 if [ -d "$ZSH_CUSTOM/functions" ]; then
