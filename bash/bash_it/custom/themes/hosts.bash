@@ -23,7 +23,7 @@
 # No color equals to white.
 
 colortheme=''
-if [ -z "$DOTFILES_THEME_COLORING" ]; then
+if [ -z "$DOTFILES_THEME_PROMPT_COLORING" ]; then
   if [ -z "$DOTFILES_HOSTGROUP" ]; then
     host="$(hostname |  cut -d'.' -f1)"
     colortheme="$host"
@@ -31,7 +31,7 @@ if [ -z "$DOTFILES_THEME_COLORING" ]; then
     colortheme="$DOTFILES_HOSTGROUP"
   fi
 else
-  colortheme="$DOTFILES_THEME_COLORING"
+  colortheme="$DOTFILES_THEME_PROMPT_COLORING"
 fi
 
 case "$colortheme" in
