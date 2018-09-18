@@ -20,25 +20,6 @@
 
 
 ##############################################################################
-# DEFINITIONS
-
-# hostname
-HOSTNAME="$(hostname)"
-export HOSTNAME
-
-# set tab size to 2
-export SHELL_TAB_SIZE=2
-tabs "$SHELL_TAB_SIZE"
-
-# set my GPG key
-export GPGKEY='0xF4B4A1414B2F9555'
-
-# set lang
-export LANG='en_US.UTF-8'
-##############################################################################
-
-
-##############################################################################
 # ALIASES
 # source aliases for bash/zsh
 if [ -d ~/.aliases.d ]; then
