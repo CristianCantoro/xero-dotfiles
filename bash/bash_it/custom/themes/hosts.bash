@@ -22,8 +22,19 @@
 # is not defined the precedent is used.
 # No color equals to white.
 
-host="$(hostname |  cut -d'.' -f1)"
-case "$host" in
+colortheme=''
+if [ -z "$DOTFILES_THEME_COLORING" ]; then
+  if [ -z "$DOTFILES_HOSTGROUP" ]; then
+    host="$(hostname |  cut -d'.' -f1)"
+    colortheme="$host"
+  else
+    colortheme="$DOTFILES_HOSTGROUP"
+  fi
+else
+  colortheme="$DOTFILES_THEME_COLORING"
+fi
+
+case "$colortheme" in
   'inara')
       user_color_user="${FX[bold]}${FG[001]}"
       at_color_root="${FX[bold]}${FG[031]}"
