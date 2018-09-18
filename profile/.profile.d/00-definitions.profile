@@ -27,6 +27,11 @@ if [ -f ~/.dotfiles_profile ]; then
     DOTFILES_SSH_CONFIG="$DOTFILES_HOSTGROUP"
     export DOTFILES_SSH_CONFIG
   fi
+
+  if [ -z "${DOTFILES_HOSTS_CONFIG+x}" ]; then
+    DOTFILES_HOSTS_CONFIG="$DOTFILES_HOSTGROUP"
+    export DOTFILES_HOSTS_CONFIG
+  fi
 fi
 
 # set tab size to 2
