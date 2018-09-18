@@ -22,8 +22,19 @@
 # is not defined the precedent is used.
 # No color equals to white.
 
-host="$(hostname |  cut -d'.' -f1)"
-case "$host" in
+colortheme=''
+if [ -z "$DOTFILES_THEME_COLORING" ]; then
+  if [ -z "$DOTFILES_HOSTGROUP" ]; then
+    host="$(hostname |  cut -d'.' -f1)"
+    colortheme="$host"
+  else
+    colortheme="$DOTFILES_HOSTGROUP"
+  fi
+else
+  colortheme="$DOTFILES_THEME_COLORING"
+fi
+
+case "$colortheme" in
   'inara')
       local user_color_root="${fg[red]}"
       local at_color_root="${FG[031]}"
@@ -64,7 +75,15 @@ case "$host" in
       local user_color_user="${fg[yellow]}"
       local host_color_user="${bg[yellow]}${fg[black]}"
       ;;
+  'cricca-graphs')
+      local user_color_root="${fg[red]}"
+      local at_color_root="${fg[green]}"
+      local host_color_root="${fg[yellow]}"
+
+      local user_color_user="${fg[green]}"
+      local host_color_user="${fg[yellow]}"
+      ;;
   *)
-      local user_color_user="${FG[147]}"
+      local user_color_user="${fg[white]}"
       ;;
 esac
