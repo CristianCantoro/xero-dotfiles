@@ -7,6 +7,9 @@
 HOSTNAME="$(hostname)"
 export HOSTNAME
 
+HOSTNAME_SHORT="$(echo "$HOSTNAME" | cut -d'.' -f1)"
+export HOSTNAME_SHORT
+
 # source host-specific configurations
 # shellcheck disable=SC1090
 if [ -f ~/.dotfiles_profile ]; then
@@ -15,7 +18,7 @@ fi
 
 # set the defaults here
 if [ -z "${DOTFILES_HOSTGROUP+x}" ]; then
-	DOTFILES_HOSTGROUP="$HOSTNAME"
+	DOTFILES_HOSTGROUP="$HOSTNAME_SHORT"
 	export DOTFILES_HOSTGROUP
 fi
 
