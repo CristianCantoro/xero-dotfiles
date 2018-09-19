@@ -37,6 +37,11 @@ if [ -z "${DOTFILES_HOSTS_CONFIG+x}" ]; then
   export DOTFILES_HOSTS_CONFIG
 fi
 
+if [ -z "${DOTFILES_GIT_CONFIG+x}" ]; then
+  DOTFILES_GIT_CONFIG="$DOTFILES_HOSTGROUP"
+  export DOTFILES_GIT_CONFIG
+fi
+
 # set tab size to 2
 export SHELL_TAB_SIZE=2
 tabs "$SHELL_TAB_SIZE"
