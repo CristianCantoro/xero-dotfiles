@@ -1,5 +1,6 @@
 # ignore everything .gitconfig
 gitconfig.d
+gitconfig
+.gitconfig
 .gitignore
 Makefile
-
