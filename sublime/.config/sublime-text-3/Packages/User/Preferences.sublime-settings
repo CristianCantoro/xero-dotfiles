@@ -1,4 +1,8 @@
 {
+	"added_words":
+	[
+		"multithreading"
+	],
 	"color_scheme": "Packages/User/SublimeLinter/cristian.tmTheme",
 	"font_size": 15,
 	"ignored_packages":
