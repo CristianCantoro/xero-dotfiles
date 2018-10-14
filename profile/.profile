@@ -19,6 +19,16 @@
 ##############################################################################
 
 
+# we source all the files in the folder ~/.profile.d, ending with *.profile
+# shellcheck disable=SC1090
+if [ -d ~/.profile.d/ ]; then
+	for profile_file in ~/.profile.d/*.profile; do
+	 # shellcheck disable=SC1090
+	 source "$profile_file"
+	done
+fi
+
+
 ##############################################################################
 # ALIASES
 # source aliases for bash/zsh
@@ -31,12 +41,3 @@ if [ -d ~/.aliases.d ]; then
 	done
 fi
 ##############################################################################
-
-# we source all the files in the folder ~/.profile.d, ending with *.profile
-# shellcheck disable=SC1090
-if [ -d ~/.profile.d/ ]; then
-	for profile_file in ~/.profile.d/*.profile; do
-	 # shellcheck disable=SC1090
-	 source "$profile_file"
-	done
-fi
