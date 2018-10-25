@@ -21,19 +21,44 @@ function ssh_agent_cant_connect() {
 
 function ssh_agent_dump_env() {
 
-  if pgrep -f ssh-agent > /dev/null && [ ! -z "${SSH_AUTH_SOCK}" ]; then
-    num_processes="$(pgrep -f ssh-agent | wc -l)"
-    if [ "$num_processes" -gt '1' ]; then
-      (>&2 echo 'Multiple ssh-agent processes found. Exiting.' )
-      return 1
+  if [ ! -z "${SSH_AUTH_SOCK}" ]; then
+
+    if pgrep -f ssh-agent > /dev/null; then
+      num_processes="$(pgrep -f ssh-agent | wc -l)"
+      if [ "$num_processes" -gt '1' ]; then
+        (>&2 echo 'Error: multiple ssh-agent processes found. Exiting.' )
+        return 1
+      fi
+    fi
+
+    local agent_pid_flag
+    local agent_pid
+
+    agent_pid_flag=false
+    agent_pid=$(echo "$SSH_AUTH_SOCK" | awk -F'.' '{print $NF}')
+    if ! { [ -n "$agent_pid" ] && \
+           [ "$agent_pid" -eq "$agent_pid" ] 2>/dev/null; }; then
+      # not a number
+      agent_pid_flag=false
+      (>&2 echo 'Warning: ssh agent pid from SSH_AUTH_SOCK is not a number.' )
+    else
+      agent_pid_flag=true
     fi
 
     (
       umask 066
       cat << EOF > "$SSH_ENV"
 SSH_AUTH_SOCK=$SSH_AUTH_SOCK; export SSH_AUTH_SOCK;
-SSH_AGENT_PID=$(pgrep -f 'ssh-agent'); export SSH_AGENT_PID;
-# echo Agent pid $(pgrep -f 'ssh-agent');
+EOF
+
+      if $agent_pid_flag; then
+        cat << EOF >> "$SSH_ENV"
+SSH_AGENT_PID=$agent_pid; export SSH_AGENT_PID;
+EOF
+      fi
+
+      cat << EOF >> "$SSH_ENV"
+# ssh-agent dumped on $(date --iso-8601=seconds).
 EOF
     )
 
