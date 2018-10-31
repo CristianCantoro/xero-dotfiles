@@ -53,3 +53,9 @@ fi
 if [ -f "$ZSH_CUSTOM/functions/dedup_PATH" ]; then
   dedup_PATH
 fi
+
+if command -v gcloud >/dev/null; then
+  if [ -d '/usr/share/google-cloud-sdk' ]; then
+    source /usr/share/google-cloud-sdk/completion.zsh.inc
+  fi
+fi
