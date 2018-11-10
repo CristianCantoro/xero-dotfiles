@@ -74,3 +74,6 @@ function cleanbash() {
 if command -v bat &>/dev/null; then
   alias cat='bat'
 fi
+
+# sort syslog by date
+alias sort_by_date='sort -k 1,2M -k 2,3n -k 3,4n'
