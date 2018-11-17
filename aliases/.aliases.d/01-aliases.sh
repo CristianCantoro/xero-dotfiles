@@ -77,3 +77,13 @@ fi
 
 # sort syslog by date
 alias sort_by_date='sort -k 1,2M -k 2,3n -k 3,4n'
+
+# start a container with a clean instance of firefox
+if command -v docker &>/dev/null; then
+  function cleanfirefox() {
+    docker run -d --rm \
+               --network host \
+               --shm-size 4g \
+                 jlesage/firefox
+  }
+fi
