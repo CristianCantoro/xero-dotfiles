@@ -87,3 +87,7 @@ if command -v docker &>/dev/null; then
                  jlesage/firefox
   }
 fi
+
+if command -v sar &>/dev/null; then
+  alias sysstat='sar'
+fi
