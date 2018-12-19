@@ -14,9 +14,11 @@
 #
 # set PATH so it includes user's private bin directories
 # if it exists
-[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
-##############################################################################
+[ -d "$HOME/usr/local/bin" ] && PATH="$HOME/usr/local/bin:$PATH"
+[ -d "$HOME/usr/bin" ] && PATH="$HOME/usr/bin:$PATH"
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+#############################################################################
 
 
 # we source all the files in the folder ~/.profile.d, ending with *.profile
