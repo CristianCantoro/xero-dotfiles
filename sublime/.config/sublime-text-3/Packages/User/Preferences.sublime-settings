@@ -1,7 +1,9 @@
 {
 	"added_words":
 	[
-		"multithreading"
+		"multithreading",
+		"Wikipedia",
+		"timestamp"
 	],
 	"color_scheme": "Packages/User/SublimeLinter/cristian.tmTheme",
 	"font_size": 15,
