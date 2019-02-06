@@ -3,7 +3,9 @@
 	[
 		"multithreading",
 		"Wikipedia",
-		"timestamp"
+		"timestamp",
+		"vertices",
+		"online"
 	],
 	"color_scheme": "Packages/User/SublimeLinter/cristian.tmTheme",
 	"font_size": 15,
