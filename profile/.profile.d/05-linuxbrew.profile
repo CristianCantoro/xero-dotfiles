@@ -4,9 +4,18 @@
 # LINUXBREW
 #
 # See https://linuxbrew.sh
-if [ -d "$HOME/.linuxbrew" ]; then
-  export PATH="$HOME/.linuxbrew/sbin:$HOME/.linuxbrew/bin:$PATH"
-  export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-  export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-  export XDG_DATA_DIRS="$HOME/.linuxbrew/share:$XDG_DATA_DIRS"
+BREW_INSTALLED=false
+if [ -d '/home/linuxbrew/.linuxbrew' ]; then
+  BREW_INSTALLED=true
+  BREW_PREFIX='/home/linuxbrew/.linuxbrew'
+elif [ -d "$HOME/.linuxbrew" ]; then
+  BREW_INSTALLED=true
+  BREW_PREFIX="$HOME/.linuxbrew"
+fi
+
+if $BREW_INSTALLED; then
+  export PATH="$BREW_PREFIX/sbin:$BREW_PREFIX/bin:$PATH"
+  export MANPATH="$BREW_PREFIX/share/man:$MANPATH"
+  export INFOPATH="$BREW_PREFIX/share/info:$INFOPATH"
+  export XDG_DATA_DIRS="$BREW_PREFIX/share:$XDG_DATA_DIRS"
 fi
