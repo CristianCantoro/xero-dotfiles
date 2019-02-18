@@ -1,0 +1,68 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+  ( . /etc/bashrc ) 2>/dev/null
+fi
+
+# set TMPDIR to ~/tmp
+if [ -d ~/tmp ]; then
+  export TMPDIR=~/tmp
+fi
+
+# import profile
+[[ -f ~/.profile ]] && source ~/.profile
+
+# set unlimited history size
+# https://stackoverflow.com/a/12234989/2377454
+export HISTSIZE=100000
+export HISTFILESIZE=100000
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+export PATH="$HOME/bin:$HOME/usr/bin:$HOME/usr/local/bin:$PATH"
+export LD_LIBRARY_PATH="$HOME/usr/lib:$HOME/usr/local/lib"
+export CFLAGS="-I$HOME/usr/include -I$HOME/usr/local/include"
+export LDFLAG=S"-L$HOME/usr/lib -L$HOME/usr/local/lib"
+export PYTHONPATH="$HOME/usr/lib/python3.6"
+
+# activate fzf history search
+# https://github.com/junegunn/fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# set prompt to user@host cwd $
+export PS1="\u@\h \w \\$ \[$(tput -T "$TERM" sgr0)\]"
+
+# Set the title of a terminal window for screen
+if [ -n "$STY" ]; then
+  PROMPT_COMMAND='printf "\033k\033\134"'
+fi
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# https://askubuntu.com/a/545578/71067
+# enable bash completion in interactive shells
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    ( . /usr/share/bash-completion/bash_completion ) 2>/dev/null
+  elif [ -f /etc/bash_completion ]; then
+    ( . /etc/bash_completion ) 2>/dev/null
+  fi
+fi
