@@ -25,7 +25,7 @@ unsetenv PROMPT_COMMAND
 vbell off
 
 # mouse tracking allows to switch region focus by clicking
-mousetrack on
+mousetrack off
 
 # default windows
 screen 1 bash
