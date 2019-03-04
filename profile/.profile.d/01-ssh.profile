@@ -21,7 +21,7 @@ function ssh_agent_cant_connect() {
 
 function ssh_agent_dump_env() {
 
-  if [ ! -z "${SSH_AUTH_SOCK}" ]; then
+  if [ -n "${SSH_AUTH_SOCK}" ]; then
 
     if pgrep -f ssh-agent > /dev/null; then
       num_processes="$(pgrep -f ssh-agent | wc -l)"
@@ -95,7 +95,7 @@ if [ -z "${SSH_AUTH_SOCK+x}" ]; then
     fi
 
     # if ssh-agent is not running and SSH_AGENT_PID not set
-    if ! pgrep -f ssh-agent > /dev/null && [ ! -z "${SSH_AGENT_PID}" ]; then
+    if ! pgrep -f ssh-agent > /dev/null && [ -n "${SSH_AGENT_PID}" ]; then
       start_ssh_agent
     fi
   fi
