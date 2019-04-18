@@ -5,7 +5,9 @@
 		"Wikipedia",
 		"timestamp",
 		"vertices",
-		"online"
+		"online",
+		"teleporting",
+		"hyperlink"
 	],
 	"color_scheme": "Packages/User/SublimeLinter/cristian.tmTheme",
 	"font_size": 15,
