@@ -20,9 +20,9 @@ alias dirsize='du -h -s'
 # http://n3mesisfixx.blogspot.it/2013/02/
 #    what-is-my-public-ip-from-command-line.html
 if command -v curl &>/dev/null; then
-  alias canihazip='curl -w "\n" https://canihazip.com/s'
+  alias canihazip='curl -s https://api.ipify.org'
 elif command -v wget &>/dev/null; then
-  alias canihazip='wget https://canihazip.com/s -O - -q; echo'
+  alias canihazip=' wget https://api.ipify.org -O - -q; echo'
 fi
 if command -v canihazip &>/dev/null; then
   alias getip='canihazip'
