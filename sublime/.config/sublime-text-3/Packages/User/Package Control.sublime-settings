@@ -25,6 +25,7 @@
 		"SublimeLinter",
 		"SublimeLinter-shellcheck",
 		"Tmux Syntax Highlight",
+		"WordCount",
 		"ZSH"
 	]
 }
