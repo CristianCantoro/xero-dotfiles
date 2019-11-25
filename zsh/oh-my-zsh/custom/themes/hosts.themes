@@ -35,6 +35,12 @@ else
 fi
 
 case "$colortheme" in
+  'kaylee')
+      local user_color_root="${fg[red]}"
+      local at_color_root="${FG[220]}"
+
+      local user_color_user="${FG[220]}"
+      ;;
   'inara')
       local user_color_root="${fg[red]}"
       local at_color_root="${FG[031]}"
