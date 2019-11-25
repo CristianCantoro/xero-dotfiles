@@ -54,8 +54,13 @@ if [ -f "$ZSH_CUSTOM/functions/dedup_PATH" ]; then
   dedup_PATH
 fi
 
+# gcloud autocompletion
 if command -v gcloud >/dev/null; then
   if [ -d '/usr/share/google-cloud-sdk' ]; then
     source /usr/share/google-cloud-sdk/completion.zsh.inc
   fi
 fi
+
+# zsh autosuggetion style
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=100'
+
