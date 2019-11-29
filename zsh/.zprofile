@@ -63,4 +63,3 @@ fi
 
 # zsh autosuggetion style
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=100'
-
