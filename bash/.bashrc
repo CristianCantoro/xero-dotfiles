@@ -131,6 +131,9 @@ fi
 # https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# PostgreSQL environment
+[ -f ~/.pgenv.sh ] && source ~/.pgenv.sh
+
 # Path to the bash it configuration
 export BASH_IT="$HOME/.bash_it"
 
