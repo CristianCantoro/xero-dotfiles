@@ -75,9 +75,19 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  if command -v vim >/dev/null; then
+    export EDITOR='vim'
+  else
+    export EDITOR='nano'
+  fi
 else
-  export EDITOR='nvim'
+  if command -v nvim >/dev/null; then
+    export EDITOR='nvim'
+  elif command -v vim >/dev/null; then
+    export EDITOR='vim'
+  else
+    export EDITOR='nano'
+  fi
 fi
 
 # Compilation flags
