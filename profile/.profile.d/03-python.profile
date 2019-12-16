@@ -14,10 +14,12 @@ fi
 # See:
 # https://github.com/brainsik/virtualenv-burrito
 if [ -f "$HOME/.venvburrito/startup.sh" ]; then
-  # shellcheck source=/dev/null
   . "$HOME/.venvburrito/startup.sh"
 elif [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
-  WORKON_HOME="$HOME/.virtualenvs"
+  # Python virtualenvwrapper problem running the initialization hooks
+  # https://askubuntu.com/a/995130/71067
+  export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+  export WORKON_HOME="$HOME/.virtualenvs"
   mkdir -p "$WORKON_HOME"
 
   . /usr/local/bin/virtualenvwrapper.sh
