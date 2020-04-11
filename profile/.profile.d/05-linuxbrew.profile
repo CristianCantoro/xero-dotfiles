@@ -18,4 +18,6 @@ if $BREW_INSTALLED; then
   export MANPATH="$BREW_PREFIX/share/man:$MANPATH"
   export INFOPATH="$BREW_PREFIX/share/info:$INFOPATH"
   export XDG_DATA_DIRS="$BREW_PREFIX/share:$XDG_DATA_DIRS"
+
+  export BREW_DISABLED=falses
 fi
