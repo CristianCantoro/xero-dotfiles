@@ -6,7 +6,7 @@ alias 'lsglob'='ls -lahd'
 ##############################################################################
 # LS
 #
-# ParsingLs is bad (https://mywiki.wooledge.org/ParsingLs) and the two
+# Parsing ls is bad (https://mywiki.wooledge.org/ParsingLs) and the two
 # following function may be - and probably indeed are - the dumbest functions
 # ever written. However, I find it more natural to use `ls | grep` instead of
 # using globbing properly.
