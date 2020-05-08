@@ -25,3 +25,6 @@
 [submodule "zsh/oh-my-zsh/custom/themes/colorbira"]
 	path = zsh/oh-my-zsh/custom/themes/colorbira
 	url = git@github.com:CristianCantoro/colorbira-zsh-theme.git
+[submodule "zsh/oh-my-zsh/custom/plugins/conda"]
+	path = zsh/oh-my-zsh/custom/plugins/conda
+	url = https://github.com/esc/conda-zsh-completion.git
