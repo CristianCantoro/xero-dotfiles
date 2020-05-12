@@ -1,1 +1,1 @@
-../.scripts/unitn_vpn.sh
+../.scripts/vpn/unitn_vpn.sh
