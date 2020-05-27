@@ -62,7 +62,7 @@ DISABLE_LS_COLORS="false"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git ansible rvm nvm docker vagrant zsh-autosuggestions virtualenv cargo)
-if command conda 2>/dev/null; then
+if command -v conda &>/dev/null; then
   plugins+=(conda)
 fi
 
