@@ -27,6 +27,7 @@
 		"Restart",
 		"SublimeLinter",
 		"SublimeLinter-contrib-markdownlint",
+		"SublimeLinter-flake8",
 		"SublimeLinter-shellcheck",
 		"Tmux Syntax Highlight",
 		"WordCount",

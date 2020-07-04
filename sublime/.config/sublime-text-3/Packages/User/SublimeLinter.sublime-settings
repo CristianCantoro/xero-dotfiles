@@ -1,0 +1,15 @@
+// SublimeLinter Settings - User
+{
+    "debug": true,
+    "linters":
+    {
+        "flake8": {
+            "disable": false,
+            "args": [
+                "--exclude=__pycache__,.pyc",
+                "--max-line-length=99",
+                "--select=E,F,W,C90",
+            ],
+        }
+    }
+}
