@@ -14,7 +14,7 @@ if [ -f "$HOME/.scripts/tmux.sh" ]; then
     source "$HOME/.scripts/tmux.sh"
     # if TMUX is defined then set TERM to screen-256color
     if [ -n "$TMUX" ]; then
-      export TERM='tmux-256color'
+      export TERM='xterm-256color'
     fi
   fi
 fi
