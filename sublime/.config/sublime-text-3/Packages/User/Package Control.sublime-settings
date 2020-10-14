@@ -26,6 +26,7 @@
 		"Package Control",
 		"Restart",
 		"SublimeLinter",
+		"SublimeLinter-contrib-dockerfilelint",
 		"SublimeLinter-contrib-markdownlint",
 		"SublimeLinter-flake8",
 		"SublimeLinter-shellcheck",
