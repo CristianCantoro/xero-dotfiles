@@ -41,11 +41,14 @@ verify_tmux_version () {
     tmux_home="$HOME/.tmux"
     tmux_version="$(tmux -V | cut -c 6-)"
 
-    if version_compare "$tmux_version" '>=' '2.1'; then
-        echo "tmux version >= 2.1"
-        tmux source-file "$tmux_home/tmux_2.1_up.conf"
+    if version_compare "$tmux_version" '>=' '3'; then
+        echo "tmux version >= 3"
+        tmux source-file "$tmux_home/tmux_3_up.conf"
+    elif version_compare "$tmux_version" '>=' '2.1'; then
+        echo "tmux version >= 2.1 and < 3"
+        tmux source-file "$tmux_home/tmux_2.1_to_3.conf"
     elif version_compare "$tmux_version" '>=' '1.9'; then
-        echo "tmux version >= 1.9"
+        echo "tmux version >= 1.9 and < 2.1"
         tmux source-file "$tmux_home/tmux_1.9_to_2.1.conf"
     else
         echo "tmux version < 1.9"
