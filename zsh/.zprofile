@@ -68,6 +68,9 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=100'
 # see:
 #   - https://github.com/larkery/zsh-histdb
 if [ -f "$HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh" ]; then
-  source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
+  source "$HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh"
   autoload -Uz add-zsh-hook
+
+  source "$HOME/.oh-my-zsh/custom/plugins/zsh-histdb/histdb-interactive.zsh"
+  bindkey '^F' _histdb-isearch
 fi
