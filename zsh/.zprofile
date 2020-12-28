@@ -10,18 +10,20 @@ setopt autopushd pushdminus pushdsilent pushdtohome
 # activate extended globbing
 setopt extended_glob
 
-case $TERM in
-  rxvt|*term|gnome-*)
+if [[ -z $TMUX ]]; then
+  case $TERM in
+    rxvt|*term|gnome-*)
 
-    # fix issue with %[A-z], zsh interpret these symbols as
-    # command sequences with a special meaning:
-    # See:
-    # https://github.com/robbyrussell/oh-my-zsh/issues/521
-    # https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/435336
-    precmd() { print -Pn $'\e]0;%m:::$(basename $PWD)\a' }
-    preexec () { print -Pn $'\e]0;${~1:gs/%/%%}\a' }
-    ;;
-esac
+      # fix issue with %[A-z], zsh interpret these symbols as
+      # command sequences with a special meaning:
+      # See:
+      # https://github.com/robbyrussell/oh-my-zsh/issues/521
+      # https://bugs.launchpad.net/ubuntu/+source/zsh/+bug/435336
+      precmd() { print -Pn $'\e]0;%m:::$(basename $PWD)\a' }
+      preexec () { print -Pn $'\e]0;${~1:gs/%/%%}\a' }
+      ;;
+  esac
+fi
 
 # Getting command-not-found working under zsh
 # https://askubuntu.com/a/324761/71067
