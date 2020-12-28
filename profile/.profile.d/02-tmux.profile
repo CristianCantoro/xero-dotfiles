@@ -12,9 +12,9 @@ if [ -f "$HOME/.scripts/tmux.sh" ]; then
   if [[ $UID -ne 0 ]]; then
     # shellcheck disable=SC1090
     source "$HOME/.scripts/tmux.sh"
-    # if TMUX is defined then set TERM to screen-256color
+    # if TMUX is defined then set TERM to tmux-256color
     if [ -n "$TMUX" ]; then
-      export TERM='xterm-256color'
+      export TERM='tmux-256color'
     fi
   fi
 fi
