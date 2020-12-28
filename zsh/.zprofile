@@ -63,3 +63,11 @@ fi
 
 # zsh autosuggetion style
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=100'
+
+# zsh history database (zsh-histdb)
+# see:
+#   - https://github.com/larkery/zsh-histdb
+if [ -f "$HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh" ]; then
+  source $HOME/.oh-my-zsh/custom/plugins/zsh-histdb/sqlite-history.zsh
+  autoload -Uz add-zsh-hook
+fi

@@ -28,3 +28,6 @@
 [submodule "zsh/oh-my-zsh/custom/plugins/conda"]
 	path = zsh/oh-my-zsh/custom/plugins/conda
 	url = https://github.com/esc/conda-zsh-completion.git
+[submodule "zsh/oh-my-zsh/custom/plugins/zsh-histdb"]
+	path = zsh/oh-my-zsh/custom/plugins/zsh-histdb
+	url = https://github.com/larkery/zsh-histdb
