@@ -61,11 +61,28 @@ DISABLE_LS_COLORS="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ansible rvm nvm docker vagrant zsh-autosuggestions virtualenv cargo)
+plugins=(zsh-autosuggestions git)
+if command -v ansible &>/dev/null; then
+  plugins+=(ansible)
+fi
+if command -v cargo &>/dev/null; then
+  plugins+=(cargo)
+fi
 if command -v conda &>/dev/null; then
   plugins+=(conda)
 fi
-
+if command -v docker &>/dev/null; then
+  plugins+=(docker docker-compose)
+fi
+if command -v nvm &>/dev/null; then
+  plugins+=(nvm)
+fi
+if command -v rvm &>/dev/null; then
+  plugins+=(rvm)
+fi
+if command -v vagrant &>/dev/null; then
+  plugins+=(vagrant)
+fi
 # User configuration
 
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
