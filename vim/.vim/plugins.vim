@@ -38,7 +38,17 @@ Plug 'xero/vim-noctu'
 Plug 'noahfrederick/vim-hemisu'
 
 " features
-Plug 'shougo/deoplete.nvim', has('nvim') ? {} : { 'do': [':UpdateRemotePlugins', ':set runtimepath+=~/.vim/plugged/deoplete.nvim/'] }
+
+" deoplete: https://github.com/Shougo/deoplete.nvim
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
 Plug 'ajh17/VimCompletesMe'
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
