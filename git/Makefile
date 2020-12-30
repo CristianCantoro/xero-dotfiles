@@ -25,7 +25,6 @@ gitconfig: ./gitconfig.d/gitconfig.$(DOTFILES_GIT_CONFIG).m4 ./gitconfig.d/compo
 	m4 -I./gitconfig.d/components/ \
   ./gitconfig.d/gitconfig.$(DOTFILES_GIT_CONFIG).m4 > ${tmpdir}/gitconfig
 	cat -s ${tmpdir}/gitconfig > gitconfig
-	cp -v gitconfig ~/.gitconfig
 
 endif
 
