@@ -43,14 +43,17 @@ set foldlevel=99
 set foldminlines=99
 set foldlevelstart=99
 
+" highlight column
+set colorcolumn=80,130
+
 " highlight cursor
 set cursorline
-"set cursorcolumn
+set cursorcolumn
 
 " show invisibles
 set list
 set listchars=
-set listchars+=tab:𐄙\ 
+set listchars+=tab:\ \ ┊
 set listchars+=trail:·
 set listchars+=extends:»
 set listchars+=precedes:«
