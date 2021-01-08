@@ -77,6 +77,9 @@ fi
 if command -v nvm &>/dev/null; then
   plugins+=(nvm)
 fi
+if command -v pyenv &>/dev/null; then
+  plugins+=(pyenv)
+fi
 if command -v rvm &>/dev/null; then
   plugins+=(rvm)
 fi
