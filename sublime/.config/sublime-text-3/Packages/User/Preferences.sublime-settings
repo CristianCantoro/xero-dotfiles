@@ -7,7 +7,8 @@
 		"vertices",
 		"online",
 		"teleporting",
-		"hyperlink"
+		"hyperlink",
+		"multimodal"
 	],
 	"color_scheme": "Packages/User/SublimeLinter/cristian.tmTheme",
 	"font_size": 15,
