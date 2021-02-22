@@ -31,3 +31,6 @@
 [submodule "zsh/oh-my-zsh/custom/plugins/zsh-histdb"]
 	path = zsh/oh-my-zsh/custom/plugins/zsh-histdb
 	url = https://github.com/larkery/zsh-histdb
+[submodule "bat/bat-extra"]
+	path = bat/bat-extra
+	url = https://github.com/eth-p/bat-extras
