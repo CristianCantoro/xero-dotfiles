@@ -11,6 +11,7 @@
 		"multimodal"
 	],
 	"color_scheme": "Packages/User/SublimeLinter/cristian.tmTheme",
+	"dictionary": "Packages/Language - Italian/it_IT.dic",
 	"font_size": 15,
 	"ignored_packages":
 	[
