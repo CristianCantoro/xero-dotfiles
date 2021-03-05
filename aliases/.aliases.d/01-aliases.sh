@@ -4,6 +4,7 @@
 # Alias for apt-get update/apt-get upgrade
 if command -v apt &>/dev/null; then
   alias aptupdate='sudo apt update && sudo apt --assume-yes upgrade'
+  alias aptclean='sudo apt --assume-yes autoremove && sudo apt --assume-yes autoclean'
 fi
 
 # Interactive version of move and copy
@@ -47,6 +48,7 @@ alias gpg=gpg2
 # Linuxbrew update and upgrade
 if command -v brew &>/dev/null; then
   alias brewupdate='brew update && brew upgrade'
+  alias brewclean='brew cleanup'
 fi
 
 # BFG Repo-Cleaner
