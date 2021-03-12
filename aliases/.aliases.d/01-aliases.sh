@@ -93,3 +93,9 @@ fi
 if command -v sar &>/dev/null; then
   alias sysstat='sar'
 fi
+
+if [ -n ${BREW_PREFIX+x} ]; then
+  if [ -f "${BREW_PREFIX}/bin/parallel" ]; then
+    alias gnu-parallel="${BREW_PREFIX}/bin/parallel"
+  fi
+fi
