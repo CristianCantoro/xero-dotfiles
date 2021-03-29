@@ -89,6 +89,14 @@ case "$colortheme" in
       local user_color_user="${fg[green]}"
       local host_color_user="${fg[yellow]}"
       ;;
+  'aries')
+      local user_color_root="${fg[red]}"
+      local at_color_root="${FG[046]}"
+      local host_color_root="${FG[046]}"
+
+      local user_color_user="${FG[046]}"
+      local host_color_user="${FG[046]}"
+      ;;
   *)
       local user_color_user="${fg[white]}"
       ;;
