@@ -29,6 +29,7 @@
 		"Protobuf Syntax Hightlighting",
 		"Restart",
 		"SublimeLinter",
+		"SublimeLinter-annotations",
 		"SublimeLinter-contrib-dockerfilelint",
 		"SublimeLinter-contrib-markdownlint",
 		"SublimeLinter-flake8",
