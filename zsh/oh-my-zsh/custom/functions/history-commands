@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# print commands issued from history
+history | cut -c30-
