@@ -31,8 +31,10 @@ local function __timesync() {
     esac
   done
 
-  date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | \
+  now="$(wget -qSO- --max-redirect=0 google.com 2>&1 | \
              grep Date: | cut -d' ' -f5-8)Z"
+  echo "now: $now"
+  sudo date -s "$now"
 
 }
 
