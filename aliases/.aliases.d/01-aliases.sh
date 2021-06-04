@@ -100,6 +100,6 @@ if [ -n ${BREW_PREFIX+x} ]; then
   fi
 fi
 
-# if command -v spectrum_ls &>/dev/null; then
-#  alias colors="spectrum_ls && spectrum_bls"
-# fi
+if command -v spectrum_ls &>/dev/null; then
+  alias color_list="spectrum_ls && spectrum_bls"
+fi
