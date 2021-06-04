@@ -8,14 +8,16 @@
 		"online",
 		"teleporting",
 		"hyperlink",
-		"multimodal"
+		"multimodal",
+		"Eurecat",
+		"Alex",
 	],
 	"color_scheme": "Packages/User/SublimeLinter/cristian.tmTheme",
-	"dictionary": "Packages/Language - Italian/it_IT.dic",
+	"dictionary": "Packages/Language - Spanish/es_ES.dic",
 	"font_size": 15,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
-	"theme": "Default.sublime-theme"
+	"theme": "Default.sublime-theme",
 }
