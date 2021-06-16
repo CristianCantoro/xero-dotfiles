@@ -13,11 +13,11 @@
 		"Alex",
 	],
 	"color_scheme": "Packages/User/SublimeLinter/cristian.tmTheme",
-	"dictionary": "Packages/Language - Spanish/es_ES.dic",
+	"dictionary": "Packages/Language - English/en_US.dic",
 	"font_size": 15,
 	"ignored_packages":
 	[
-		"Vintage"
+		"Vintage",
 	],
 	"theme": "Default.sublime-theme",
 }
