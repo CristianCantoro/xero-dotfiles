@@ -94,12 +94,16 @@ if command -v sar &>/dev/null; then
   alias sysstat='sar'
 fi
 
-if [ -n ${BREW_PREFIX+x} ]; then
+if [ -n "${BREW_PREFIX+x}" ]; then
   if [ -f "${BREW_PREFIX}/bin/parallel" ]; then
-    alias gnu-parallel="${BREW_PREFIX}/bin/parallel"
+    alias gnu-parallel="\${BREW_PREFIX}/bin/parallel"
   fi
 fi
 
 if command -v spectrum_ls &>/dev/null; then
-  alias color_list="spectrum_ls && spectrum_bls"
+  alias color_list='spectrum_ls && spectrum_bls'
+fi
+
+if command -v subl &>/dev/null; then
+  alias sublimetext='subl'
 fi
