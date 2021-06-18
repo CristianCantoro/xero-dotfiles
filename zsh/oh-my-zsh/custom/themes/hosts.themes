@@ -113,6 +113,22 @@ case "$colortheme" in
       local user_color_user="${FG[011]}"
       local host_color_user="${FG[011]}"
       ;;
+  'eutwiki')
+      local user_color_root="${fg[red]}"
+      local at_color_root="${FG[087]}"
+      local host_color_root="${FG[087]}"
+
+      local user_color_user="${FG[011]}"
+      local host_color_user="${FG[011]}"
+      ;;
+  'mobius')
+      local user_color_root="${fg[red]}"
+      local at_color_root="${FG[092]}"
+      local host_color_root="${FG[092]}"
+
+      local user_color_user="${FG[092]}"
+      local host_color_user="${FG[092]}"
+      ;;
   *)
       local user_color_user="${fg[white]}"
       ;;
