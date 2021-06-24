@@ -52,7 +52,7 @@ local function __showip() {
     esac
   done
 
-  if $ipv4 && $ipv6; then
+  if [[ $ipv4 && $ipv6 ]]; then
     (>&2 echo "Options -4 and -6 are incompatible." )
     return 1
   fi
@@ -61,24 +61,17 @@ local function __showip() {
   if [ $count -gt 1 ]; then
     args=(${@[$count,-1]})
   fi
-  echo "#: $#"
-  echo "count: $count"
-  echo "(#-count): $((#-count))"
 
   # does the work, select the IP and apply the regex above
   if [ $((#-count)) -lt 0 ] ; then
-    ip -o addr show | sed -re 's#[0-9]+:\s+(.+)\s+inet(6)?#\1#g' | \
+    ip ${flag:-} -o addr show | sed -re 's#[0-9]+:\s+(.+)\s+inet(6)?#\1#g' | \
       sed -re 's#(([0-9]{1,3}[\.]){3}[0-9]{1,3}(/[0-9]{1,2})?|(.{0,4}:?){8}(/[0-9]{1,3})).+#\1#g' | \
       column -t
   else
-    echo "ipv4: $ipv4"
-    echo "ipv6: $ipv6"
-
     local iface
     local res
     for iface in $args; do
       res=''
-      echo "flag: ${flag:-}"
       res=$(ip ${flag:-} -o addr show "$iface" | sed -re 's#[0-9]+:\s+(.+)\s+inet(6)?#\1#g' | \
             sed -re 's#(([0-9]{1,3}[\.]){3}[0-9]{1,3}(/[0-9]{1,2})?|(.{0,4}:?){8}(/[0-9]{1,3})).+#\1#g' | \
             column -t)
