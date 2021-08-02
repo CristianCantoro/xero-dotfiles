@@ -17,6 +17,15 @@ alias psgrep='ps ax | grep'
 # Alias for directory size listing
 alias dirsize='du -h -s'
 
+# Show only relevant mounts
+function cleandf() {
+  df -h | \
+    grep -v /snap/ | \
+    grep -v tmpfs | \
+    grep -v udev | \
+    grep -v fuse
+}
+
 # get my IP using http://canihazip.com/s
 # http://n3mesisfixx.blogspot.it/2013/02/
 #    what-is-my-public-ip-from-command-line.html
@@ -107,3 +116,4 @@ fi
 if command -v subl &>/dev/null; then
   alias sublimetext='subl'
 fi
+
