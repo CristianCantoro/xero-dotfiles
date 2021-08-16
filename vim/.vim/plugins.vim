@@ -47,7 +47,7 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-# let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 Plug 'ajh17/VimCompletesMe'
 Plug 'w0rp/ale'
