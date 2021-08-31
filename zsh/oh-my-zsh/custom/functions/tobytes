@@ -1,0 +1,50 @@
+#!/usr/bin/env zsh
+
+function __minmax_usage() {
+  (>&2 print \
+"Usage:
+  tobytes [options]
+
+Convert numbers with suffixes (k, m, g, t) to bytes.
+
+Options:
+  -h, --help             Show this help and exits.
+
+Example:
+  tobytes numbers.csv")
+}
+
+local function __tobytes() {
+
+  while getopts ":h" opt; do
+    case $opt in
+      h)
+        __tobytes_usage
+        return 0
+        ;;
+      *)
+        (>&2 echo "Flag $opt not recognized." )
+        ;;
+    esac
+  done
+
+  # Taken from:
+  # Embedding awk in a shell script
+  # https://stackoverflow.com/a/15020506/2377454
+  #
+  # AWK script
+  local tobytes_script
+  NL=$'\n'
+  read -d '' tobytes_script <<'EOF'
+  /[0-9]$/{printf "%u\\n", $1};
+  /[tT]$/{printf "%u\\n", $1*(1024*1024*1024*1024);};
+  /[gG]$/{printf "%u\\n", $1*(1024*1024*1024);};
+  /[mM]$/{printf "%u\\n", $1*(1024*1024);};
+  /[kK]$/{printf "%u\\n", $1*1024;}
+EOF
+  ################################
+
+  awk "$tobytes_script" "$@"
+}
+
+__tobytes "$@"
