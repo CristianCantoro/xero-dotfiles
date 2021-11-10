@@ -35,7 +35,8 @@
 		"SublimeLinter-flake8",
 		"SublimeLinter-shellcheck",
 		"Tmux Syntax Highlight",
+		"Vue Syntax Highlight",
 		"WordCount",
-		"ZSH"
+		"ZSH",
 	],
 }
