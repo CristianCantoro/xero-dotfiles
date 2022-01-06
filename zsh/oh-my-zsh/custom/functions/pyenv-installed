@@ -1,0 +1,48 @@
+#!/usr/bin/env zsh
+# pyenv utilities
+
+if command -v pyenv >/dev/null; then
+  local function __pyenv-installed_usage() {
+    (>&2 print \
+  "Usage:
+    pyenv-installed [options]
+    pyenv-installed -h
+
+
+  Options:
+    -e        Show also installed virtualenvs
+    -h        Show this help and exits.
+
+  Example:
+    pyenv-installed")
+  }
+
+
+  function __pyenv-installed() {
+    show_virtualenvs=false
+
+    while getopts ":he" opt; do
+      case $opt in
+        h)
+          __pyenv-installed_usage
+          return 0
+          ;;
+        e)
+          show_virtualenvs=true
+          ;;
+        *)
+          (>&2 echo "Flag $opt not recognized." )
+          ;;
+      esac
+    done
+
+    pyenv versions | grep --color=never -E '^\s+(2|3)\.[0-9]\.[0-9]+$'
+
+    if $show_virtualenvs; then
+      pyenv versions | grep --color=never '/envs/'
+    fi
+  }
+
+__pyenv-installed "$@"
+
+fi
