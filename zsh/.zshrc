@@ -66,7 +66,7 @@ if command -v ansible &>/dev/null; then
   plugins+=(ansible)
 fi
 if command -v cargo &>/dev/null; then
-  plugins+=(cargo)
+  plugins+=(rust)
 fi
 if command -v conda &>/dev/null; then
   plugins+=(conda)
