@@ -5,6 +5,9 @@
     email = cristian@balist.es
 include(001-user.gitconfig.m4)
 
+[init]
+include(002-init.gitconfig.m4)
+
 [credential]
 include(010-credential.gitconfig.m4)
 

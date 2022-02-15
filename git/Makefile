@@ -22,8 +22,8 @@ else
 git: gitconfig
 gitconfig: ./gitconfig.d/gitconfig.$(DOTFILES_GIT_CONFIG).m4 ./gitconfig.d/components/*.gitconfig.m4
 	@echo "Running target $(MAKECMDGOALS) with $(tmpdir)"
-	m4 -I./gitconfig.d/components/ \
-  ./gitconfig.d/gitconfig.$(DOTFILES_GIT_CONFIG).m4 > ${tmpdir}/gitconfig
+	m4 -I./gitconfig.d/components/ ./gitconfig.d/gitconfig.$(DOTFILES_GIT_CONFIG).m4 \
+      > ${tmpdir}/gitconfig
 	cat -s ${tmpdir}/gitconfig > gitconfig
 
 endif
