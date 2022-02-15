@@ -13,4 +13,9 @@ if [ "$XDG_SESSION_TYPE" = "x11" ]; then
   if [ -d "$HOME/eclipse" ]; then
     alias eclipse="$(find "$HOME/eclipse" -type f -executable -name 'eclipse')"
   fi
+
+  if command -v subl &>/dev/null; then
+    alias sublimetext='subl'
+  fi
+
 fi

@@ -60,12 +60,6 @@ if command -v brew &>/dev/null; then
   alias brewclean='brew cleanup'
 fi
 
-# BFG Repo-Cleaner
-# https://rtyley.github.io/bfg-repo-cleaner/
-if command -v java &>/dev/null && [ -f '/opt/BFG_repocleaner/bfg.jar' ]; then
-  alias bfg='java -jar /opt/BFG_repocleaner/bfg.jar'
-fi
-
 # Start a clean bash shell
 # https://unix.stackexchange.com/q/48994/162158
 function cleanbash() {
@@ -89,16 +83,6 @@ function cleanbash() {
 # sort by date
 alias sort_by_date='sort -k 1,2M -k 2,3n -k 3,4n'
 
-# start a container with a clean instance of firefox
-if command -v docker &>/dev/null; then
-  function cleanfirefox() {
-    docker run -d --rm \
-               --network host \
-               --shm-size 4g \
-                 jlesage/firefox
-  }
-fi
-
 if command -v sar &>/dev/null; then
   alias sysstat='sar'
 fi
@@ -112,8 +96,3 @@ fi
 if command -v spectrum_ls &>/dev/null; then
   alias color_list='spectrum_ls && spectrum_bls'
 fi
-
-if command -v subl &>/dev/null; then
-  alias sublimetext='subl'
-fi
-
