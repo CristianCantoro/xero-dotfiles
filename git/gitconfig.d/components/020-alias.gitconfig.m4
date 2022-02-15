@@ -10,6 +10,9 @@
     # We wanna grab those pesky un-added files!
     # https://git-scm.com/docs/git-stash
 
+    # show me the changes in patch format in a stash
+    stashed = stash show -p
+
     glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
     # No need for a GUI - a nice, colorful, graphical representation
     # https://git-scm.com/docs/git-log
