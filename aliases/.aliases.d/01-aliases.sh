@@ -31,11 +31,14 @@ function cleandf() {
 #    what-is-my-public-ip-from-command-line.html
 if command -v curl &>/dev/null; then
   alias canihazip='curl -s https://api.ipify.org'
+  alias canihazip6='curl -s https://api6.ipify.org'
 elif command -v wget &>/dev/null; then
-  alias canihazip=' wget https://api.ipify.org -O - -q; echo'
+  alias canihazip='wget https://api.ipify.org -O - -q; echo'
+  alias canihazip6='wget https://api6.ipify.org -O - -q; echo'
 fi
 if command -v canihazip &>/dev/null; then
   alias getip='canihazip'
+  alias getip6='canihazip6'
 fi
 
 # Alias to generate random password
