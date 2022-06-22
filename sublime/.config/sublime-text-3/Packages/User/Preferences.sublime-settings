@@ -12,12 +12,14 @@
 		"Eurecat",
 		"Alex",
 	],
-	"color_scheme": "Packages/User/SublimeLinter/cristian.tmTheme",
-	"dictionary": "Packages/Language - English/en_US.dic",
-	"font_size": 15,
+	"color_scheme": "Packages/Dark Pastel Color Scheme/dark-pastel.tmTheme",
+	"dictionary": "Dictionaries/ca_ES.dic",
+	"font_size": 16,
 	"ignored_packages":
 	[
 		"Vintage",
 	],
 	"theme": "auto",
+	"dark_color_scheme": "Packages/Dark Pastel Color Scheme/dark-pastel.tmTheme",
+	"light_color_scheme": "Packages/1337 Color Scheme/1337.tmTheme",
 }
