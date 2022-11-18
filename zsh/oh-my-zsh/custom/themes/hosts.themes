@@ -129,6 +129,14 @@ case "$colortheme" in
       local user_color_user="${FG[141]}"
       local host_color_user="${FG[141]}"
       ;;
+   'remiss')
+      local user_color_root="${fg[red]}"
+      local at_color_root="${fg[white]}"
+      local host_color_root="${fg[white]}"
+
+      local user_color_user="${fg[white]}"
+      local host_color_user="${fg[white]}"
+      ;;
   *)
       local user_color_user="${fg[white]}"
       ;;
