@@ -38,7 +38,7 @@
 		"SublimeLinter-shellcheck",
 		"Tmux Syntax Highlight",
 		"Vue Syntax Highlight",
-		"WordCount",
+		"WordingStatus",
 		"ZSH",
 	],
 }
