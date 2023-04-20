@@ -26,6 +26,32 @@ function cleandf() {
     grep -v fuse
 }
 
+# Get size of system directories
+function systemsize() {
+  LC_ALL=C
+  echo "-- $(date --iso=seconds)"
+  du -shc  | \
+    /sbin/ | \
+    /bin/  | \
+    /etc/  | \
+    /tmp/  | \
+    /boot/ | \
+    /lib/  | \
+    /opt/  | \
+    /snap/ | \
+    /var/  | \
+    /usr/  | \
+    /home/ \
+      | sort -h
+  echo '---'
+}
+
+# get size info and sort the results
+function sortdu() {
+  LC_ALL=C
+  du -shc "$@" | sort -h
+}
+
 # get my IP using http://canihazip.com/s
 # http://n3mesisfixx.blogspot.it/2013/02/
 #    what-is-my-public-ip-from-command-line.html
