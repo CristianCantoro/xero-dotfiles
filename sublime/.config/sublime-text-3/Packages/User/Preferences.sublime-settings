@@ -13,8 +13,8 @@
 		"Alex",
 	],
 	"color_scheme": "Packages/Dark Pastel Color Scheme/dark-pastel.tmTheme",
-	"dictionary": "Dictionaries/ca_ES.dic",
-	"font_size": 16,
+	"dictionary": "Packages/Language - English/en_US.dic",
+	"font_size": 15,
 	"ignored_packages":
 	[
 		"Vintage",
