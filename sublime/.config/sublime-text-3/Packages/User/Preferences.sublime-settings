@@ -11,6 +11,7 @@
 		"multimodal",
 		"Eurecat",
 		"Alex",
+		"dataset",
 	],
 	"color_scheme": "Packages/Dark Pastel Color Scheme/dark-pastel.tmTheme",
 	"dictionary": "Packages/Language - English/en_US.dic",
