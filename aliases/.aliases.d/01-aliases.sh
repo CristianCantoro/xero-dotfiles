@@ -48,8 +48,7 @@ function systemsize() {
 
 # get size info and sort the results
 function sortdu() {
-  LC_ALL=C
-  du -shc "$@" | sort -h
+  LC_ALL=C du -shc "$@" | sort -h
 }
 
 # get my IP using http://canihazip.com/s
