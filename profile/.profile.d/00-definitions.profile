@@ -7,6 +7,9 @@
 HOSTNAME="$(hostname)"
 export HOSTNAME
 
+HOSTNAME_FULL="$(hostname -f)"
+export HOSTNAME_FULL
+
 HOSTNAME_SHORT="$(echo "$HOSTNAME" | cut -d'.' -f1)"
 export HOSTNAME_SHORT
 
