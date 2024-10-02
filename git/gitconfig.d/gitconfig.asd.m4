@@ -1,9 +1,10 @@
 define(`HOSTNAME', esyscmd(`printf \`\`%s\'\' "$HOSTNAME"'))dnl
+define(`USER', esyscmd(`printf \`\`%s\'\' "$USER"'))dnl
 # Stolen from:
 #   * https://blog.scottnonnenberg.com/better-git-configuration
 #   * https://gist.github.com/scottnonnenberg/fefa3f65fdb3715d25882f3023b31c29
 [user]
-    email = cconsonni@HOSTNAME
+    email = USER@HOSTNAME
 include(001-user.gitconfig.m4)
 
 [credential]
