@@ -30,17 +30,17 @@ function cleandf() {
 function systemsize() {
   LC_ALL=C
   echo "-- $(date --iso=seconds)"
-  du -shc  | \
-    /sbin/ | \
-    /bin/  | \
-    /etc/  | \
-    /tmp/  | \
-    /boot/ | \
-    /lib/  | \
-    /opt/  | \
-    /snap/ | \
-    /var/  | \
-    /usr/  | \
+  du -shc  \
+    /sbin/ \
+    /bin/  \
+    /etc/  \
+    /tmp/  \
+    /boot/ \
+    /lib/  \
+    /opt/  \
+    /snap/ \
+    /var/  \
+    /usr/  \
     /home/ \
       | sort -h
   echo '---'
