@@ -41,7 +41,7 @@ case "$colortheme" in
 
       user_color_user="${FX[bold]}${FG[031]}"
       ;;
-  'judge')
+  'asdlab')
       user_color_user="${FG[010]}"
       at_color_user="${FG[015]}"
       host_color_user="${FG[010]}"
