@@ -29,3 +29,6 @@
     unstage = reset HEAD --
 
     cached = diff --cached
+
+    tree = log --no-show-signature --graph --date=format-local:%H:%M:%S --all \
+        --pretty="'%C(#ffe97b ul)%h%C(reset) %C(#568ea6)%cs %C(#305f72)%cd%C(reset)%C(auto)%d%C(reset) %s %C(yellow)(%C(reset)%C(#1abc9c)%an%C(reset)%C(yellow),%C(reset) %C(#007055)%cr%C(reset)%C(yellow))%C(reset)'"
