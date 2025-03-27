@@ -41,3 +41,6 @@ include(090-status.gitconfig.m4)
 
 [transfer]
 include(100-transfer.gitconfig.m4)
+
+[safe]
+    directory = /data/repositories/flask-registration.git
