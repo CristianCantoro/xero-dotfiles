@@ -18,7 +18,7 @@ alias psgrep='ps ax | grep'
 alias dirsize='du -h -s'
 
 # Show only relevant mounts
-function cleandf() {
+function cleandf {
   df -h | \
     grep -v /snap/ | \
     grep -v tmpfs | \
@@ -27,28 +27,30 @@ function cleandf() {
 }
 
 # Get size of system directories
-function systemsize() {
-  LC_ALL=C
-  echo "-- $(date --iso=seconds)"
-  du -shc  \
-    /sbin/ \
-    /bin/  \
-    /etc/  \
-    /tmp/  \
-    /boot/ \
-    /lib/  \
-    /opt/  \
-    /snap/ \
-    /var/  \
-    /usr/  \
-    /home/ \
-      | sort -h
-  echo '---'
-}
-
-# get size info and sort the results
-function sortdu() {
-  LC_ALL=C du -shc "$@" | sort -h
+function systemsize {
+  (  LC_ALL=C
+    echo "## $(date --iso=seconds)"
+    echo '```bash'
+    sudo du -s  \
+      /sbin/ \
+      /bin/  \
+      /etc/  \
+      /tmp/  \
+      /boot/ \
+      /lib/  \
+      /opt/  \
+      /snap/ \
+      /var/  \
+      /usr/  \
+      /home/ \
+      2>/dev/null \
+        | sort -n \
+        | cut -f2 \
+        | tr '\n' '\0' \
+        | xargs -0 -I {} sudo du -sh "{}" \
+        | sort -h
+    echo '```'
+  )
 }
 
 # get my IP using http://canihazip.com/s
@@ -90,7 +92,7 @@ fi
 
 # Start a clean bash shell
 # https://unix.stackexchange.com/q/48994/162158
-function cleanbash() {
+function cleanbash {
   env -i \
     HOME="$HOME" \
     LC_CTYPE="${LC_ALL:-${LC_CTYPE:-$LANG}}" \
