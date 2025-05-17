@@ -28,7 +28,7 @@ function cleandf {
 
 # Get size of system directories
 function systemsize {
-  (  LC_ALL=C
+  ( export LC_ALL=C
     echo "## $(date --iso=seconds)"
     echo '```bash'
     sudo du -s  \
