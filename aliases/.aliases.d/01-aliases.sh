@@ -43,11 +43,12 @@ function systemsize {
       /var/  \
       /usr/  \
       /home/ \
+      "$@" \
       2>/dev/null \
         | sort -n \
         | cut -f2 \
         | tr '\n' '\0' \
-        | xargs -0 -I {} sudo du -sh "{}" \
+        | xargs -0 sudo du -sch \
         | sort -h
     echo '```'
   )
