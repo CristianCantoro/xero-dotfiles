@@ -49,7 +49,7 @@ else
 endif
 " let g:deoplete#enable_at_startup = 1
 
-Plug 'ajh17/VimCompletesMe'
+Plug 'vim-scripts/VimCompletesMe'
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'isa/vim-matchit'
