@@ -125,3 +125,7 @@ fi
 if command -v spectrum_ls &>/dev/null; then
   alias color_list='spectrum_ls && spectrum_bls'
 fi
+
+function grephosts {
+  grep "$@" /etc/hosts | grep -vE '^#'
+}
