@@ -51,6 +51,11 @@ case "$colortheme" in
       at_color_user="${FG[015]}"
       host_color_user="${FG[009]}"
       ;;
+  'graphs')
+      user_color_user="${FG[010]}"
+      at_color_user="${FG[015]}"
+      host_color_user="${FG[010]}"
+      ;;
   *)
       ;;
 esac

@@ -127,10 +127,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# activate fzf history search
-# https://github.com/junegunn/fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # PostgreSQL environment
 [ -f ~/.pgenv.sh ] && source ~/.pgenv.sh
 

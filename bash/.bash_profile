@@ -12,3 +12,15 @@ fi
 if [ -n "$STY" ]; then
   PROMPT_COMMAND='printf "\033k\033\134"'
 fi
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --bash)"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+
+# DuckDB
+export PATH='/home/cristian.consonni/.duckdb/cli/latest':$PATH
+
